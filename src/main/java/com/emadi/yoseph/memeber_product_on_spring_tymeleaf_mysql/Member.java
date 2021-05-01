@@ -1,8 +1,5 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
 import javax.persistence.*;
 
 
@@ -20,14 +17,12 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String userName;
+    String username;
     String password;
     String name_first;
     String name_last;
     String phone;
     String email;
-    String dob;
-    String address;
     double balance;
 
 //    @OneToMany
@@ -37,15 +32,13 @@ public class Member {
     public Member() {
     }
 
-    public Member(String userName, String password, String name_first, String name_last, String phone, String email, String dob, String address, double balance) {
-        this.userName = userName;
+    public Member(String username, String password, String name_first, String name_last, String phone, String email, double balance) {
+        this.username = username;
         this.password = password;
         this.name_first = name_first;
         this.name_last = name_last;
         this.phone = phone;
         this.email = email;
-        this.dob = dob;
-        this.address = address;
         this.balance = balance;
     }
 
@@ -57,12 +50,12 @@ public class Member {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -103,22 +96,6 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public double getBalance() {

@@ -11,13 +11,19 @@ public class MainController {
     @Autowired
     private IMemberRepository memberRepository;
 
-    @PostMapping("/add")
-    public @ResponseBody String addNewMember(@RequestParam String username, @RequestParam String password) {
+    @GetMapping("/create")
+    @ResponseBody
+    public String addNewMember(@RequestParam String username, @RequestParam String password, @RequestParam String name_first, @RequestParam String name_last, @RequestParam String phone, @RequestParam String email) {
         Member newMember = new Member();
-        newMember.setUserName(username);
+        newMember.setName_first(name_first);
+        newMember.setName_last(name_last);
+        newMember.setUsername(username);
         newMember.setPassword(password);
+        newMember.setPhone(phone);
+        newMember.setEmail(email);
+        newMember.setBalance(100);
         memberRepository.save(newMember);
-        return "Now he/she is a part of our members family";
+        return "Now You are a part of our members family";
     }
 
     @GetMapping("/list")
