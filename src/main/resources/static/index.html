@@ -21,6 +21,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -37,29 +39,41 @@
       <div class="one-half column" style="margin-top: 25%">
         <h4>Welcome</h4>
 
-          <p>Create an account</p>
           <form action="/create" method="GET">
+            <p>Create an account and receive 100$ balance at your first day</p>
             <label for="name_first">First name:</label>
-            <input name="name_first" id="name_first">
+            <input name="name_first" id="name_first" required>
             <br>
             <label for="name_last">Last name:</label>
-            <input name="name_last" id="name_last">
+            <input name="name_last" id="name_last" required>
             <br>
-            <label for="username">Select a user name:</label>
-            <input name="username" id="username">
+            <label for="username">Username:</label>
+            <input name="username" id="username" required>
             <br>
-            <label for="password">Choose a password:</label>
-            <input type="password" name="password" id="password">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
             <br>
             <label for="phone">Phone number:</label>
-            <input name="phone" id="phone">
+            <input type="tel" name="phone" id="phone" placeholder="optional">
             <br>
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" placeholder="optional">
             <br>
             <button>Create Account</button>
           </form>
 
+        <fieldset>
+          <legend> List members</legend>
+          <form action="/login" method="GET">
+            <label for="username">Username:</label>
+            <input name="username" id="username1" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password1" required>
+            <br>
+            <button>Login</button>
+          </form>
+        </fieldset>
 
 
       </div>
