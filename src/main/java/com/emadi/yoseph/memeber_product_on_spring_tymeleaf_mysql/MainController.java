@@ -39,7 +39,6 @@ public class MainController {
     }
 
 
-
     @GetMapping("/list")
     public @ResponseBody Iterable<Member> listAllMembers(){
         return memberRepository.findAll();
