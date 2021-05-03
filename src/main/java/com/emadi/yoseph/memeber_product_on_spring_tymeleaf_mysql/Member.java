@@ -24,6 +24,7 @@ public class Member {
     String phone;
     String email;
     double balance;
+    boolean isStaff;
 
 //    @OneToMany
 //    List<Purchase> purchases;
@@ -32,7 +33,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(String username, String password, String name_first, String name_last, String phone, String email, double balance) {
+    public Member(String username, String password, String name_first, String name_last, String phone, String email, double balance, boolean staff) {
         this.username = username;
         this.password = password;
         this.name_first = name_first;
@@ -40,6 +41,7 @@ public class Member {
         this.phone = phone;
         this.email = email;
         this.balance = balance;
+        this.isStaff = staff;
     }
 
     public int getId() {
@@ -106,7 +108,15 @@ public class Member {
         this.balance = balance;
     }
 
-//    public List<Purchase> getPurchases() {
+    public boolean isStaff() {
+        return isStaff;
+    }
+
+    public void setStaff(boolean staff) {
+        isStaff = staff;
+    }
+
+    //    public List<Purchase> getPurchases() {
 //        return purchases;
 //    }
 //

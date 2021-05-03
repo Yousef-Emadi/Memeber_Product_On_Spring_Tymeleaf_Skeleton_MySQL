@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
 
@@ -72,6 +73,13 @@
             <input type="password" name="password" id="password1" required>
             <br>
             <button>Login</button>
+          </form>
+        </fieldset>
+
+        <fieldset>
+          <legend> Edit member</legend>
+          <form action="/editMemberButton" method="GET">
+                   <button>Edit Member</button>
           </form>
         </fieldset>
 

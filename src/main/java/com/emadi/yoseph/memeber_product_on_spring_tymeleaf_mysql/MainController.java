@@ -2,6 +2,7 @@ package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -22,6 +23,7 @@ public class MainController {
         newMember.setPhone(phone);
         newMember.setEmail(email.toLowerCase());
         newMember.setBalance(100);
+        newMember.setStaff(false);
         memberRepository.save(newMember);
         return "Welcome dear " + name_first +"! \nFrom now on, You are a part of our family. &#129303";
     }
@@ -39,9 +41,16 @@ public class MainController {
     }
 
 
-    @GetMapping("/list")
-    public @ResponseBody Iterable<Member> listAllMembers(){
-        return memberRepository.findAll();
+    @GetMapping("/editMemberButton")
+    public String editMemberButtonHandler(ModelMap model){
+        model.addAttribute("myMembers", memberRepository.findAll());
+        return "dropdown_list_of_members.html";
+    }
+
+    @GetMapping("/showEditingForm")
+    public String showEditingForm (Member mmbr){
+
+        return "member_editing_form.html";
     }
 
 
