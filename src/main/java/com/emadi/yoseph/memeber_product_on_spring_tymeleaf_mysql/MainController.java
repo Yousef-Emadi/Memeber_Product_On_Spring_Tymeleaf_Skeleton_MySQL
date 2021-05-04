@@ -51,10 +51,10 @@ public class MainController {
 
     @GetMapping("/showEditingForm")
     public String showEditingForm (int id, ModelMap model){
-        Optional<Member> selectedMember = memberRepository.findById(id);
-        if (selectedMember.isPresent()){
-            Member memberObject = selectedMember.get();
-            model.addAttribute("selectedMember", memberObject);
+        Optional<Member> result = memberRepository.findById(id);
+        if (result.isPresent()){
+            Member selectedMember = result.get();
+            model.addAttribute("selectedMember", selectedMember);
             return "member_editing_form.html";
 //            return "temp";
 
