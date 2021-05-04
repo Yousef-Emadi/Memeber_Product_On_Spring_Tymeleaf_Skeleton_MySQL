@@ -33,27 +33,28 @@
 <body>
 <fieldset>
   <legend> Edit Member Profile Information</legend>
+    <h3>[[${selectedMember.name_first}]] [[${selectedMember.name_last}]] record is ready to edit</h3>
 
   <form action="/sendMembertoEdit" th:object="${editedMemberObj}" method="GET">
     <label for="name_first">First name:</label>
-    <input name="name_first" id="name_first" th:value="${selectedMember.name_first}" required>
+    <input name="name_first" id="name_first" th:value="${selectedMember.name_first}" th:field="*{name_first}" required>
     <br>
     <label for="name_last">Last name:</label>
-    <input name="name_last" id="name_last" th:value="${selectedMember.name_last}" required>
+    <input name="name_last" id="name_last" th:value="${selectedMember.name_last}" th:field="*{name_last}" required>
     <br>
     <label for="username">Username:</label>
-    <input name="username" id="username" th:value="${selectedMember.username}" required>
+    <input name="username" id="username" th:value="${selectedMember.username}" th:field="*{username}" required>
     <br>
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password" th:value="${selectedMember.password}" required>
+    <input type="password" name="password" id="password" th:value="${selectedMember.password}" th:field="*{password}" required>
     <br>
     <label for="phone">Phone number:</label>
-    <input type="tel" name="phone" id="phone" placeholder="optional" th:value="${selectedMember.phone}">
+    <input type="tel" name="phone" id="phone" placeholder="optional" th:value="${selectedMember.phone}" th:field="*{phone}">
     <br>
     <label for="email">Email:</label>
-    <input type="email" name="email" id="email" th:value="${selectedMember.email}" placeholder="optional">
+    <input type="email" name="email" id="email" th:value="${selectedMember.email}" placeholder="optional" th:field="*{email}">
     <br>
-    <button>Create Account</button>
+    <button>Update Member record</button>
   </form>
 
 </fieldset>
