@@ -34,9 +34,9 @@
 <fieldset>
     <legend> Select a member to edit</legend>
     <form action="/showEditingForm" method="GET" enctype="multipart/form-data">
-        <select>
+        <select name="id">
             <!--/*@thymesVar id="myMembers" type="java"*/-->
-            <option th:each="mmbr : ${myMembers}" th:value="${mmbr}" th:text="${mmbr.name_first} + ' ' +  ${mmbr.name_last}">
+            <option th:each="mmbr : ${myMembers}" th:value="${mmbr.id}" th:text="${mmbr.name_first} + ' ' +  ${mmbr.name_last}">
             </option>
         </select>
 

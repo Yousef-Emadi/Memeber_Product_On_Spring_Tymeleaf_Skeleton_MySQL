@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 //@RequestMapping
 public class MainController {
@@ -48,10 +50,15 @@ public class MainController {
     }
 
     @GetMapping("/showEditingForm")
-    public String showEditingForm (Member mmbr, ModelMap model){
-        model.addAttribute("member", mmbr);
-        return "member_editing_form.html";
+    public String showEditingForm (int id, ModelMap model){
+        Optional<Member> selectedMember = memberRepository.findById(id);
+        if (selectedMember.isPresent()){
+            Member memberObject = selectedMember.get();
+            model.addAttribute("selectedMember", memberObject);
+            return "member_editing_form.html";
+//            return "temp";
+
+        }
+            return "user_not_found.html";
     }
-
-
 }

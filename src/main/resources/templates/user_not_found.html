@@ -32,29 +32,10 @@
 </head>
 <body>
 <fieldset>
-  <legend> Edit Member Profile Information</legend>
+    <h2> Member not found in our Database</h2>
+  <button onclick="window.location.href='/index'">Return to Home Page</button>
 
-  <form action="/sendMembertoEdit" method="GET">
-    <label for="name_first">First name:</label>
-    <input name="name_first" id="name_first" th:placeholder="${selectedMember.name_first}">
-    <br>
-    <label for="name_last">Last name:</label>
-    <input name="name_last" id="name_last" required>
-    <br>
-    <label for="username">Username:</label>
-    <input name="username" id="username" required>
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required>
-    <br>
-    <label for="phone">Phone number:</label>
-    <input type="tel" name="phone" id="phone" placeholder="optional">
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" placeholder="optional">
-    <br>
-    <button>Create Account</button>
-  </form>
+  <button></button>
 
 </fieldset>
 </body>
