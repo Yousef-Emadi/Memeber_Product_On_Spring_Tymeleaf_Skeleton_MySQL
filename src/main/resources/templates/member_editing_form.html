@@ -34,8 +34,29 @@
 <fieldset>
   <legend> Edit Member Profile Information</legend>
 
-
+  <form action="" method="GET">
+    <p>${mmbr} record is ready for editing</p>
+    <label for="name_first">First name:</label>
+    <input name="name_first" id="name_first" th:value="${member.name_first}" th:placeholder="${member.name_first}" required>
+    <br>
+    <label for="name_last">Last name:</label>
+    <input name="name_last" id="name_last" required>
+    <br>
+    <label for="username">Username:</label>
+    <input name="username" id="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+    <br>
+    <label for="phone">Phone number:</label>
+    <input type="tel" name="phone" id="phone" placeholder="optional">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" placeholder="optional">
+    <br>
+    <button>Create Account</button>
   </form>
+
 </fieldset>
 </body>
 </html>

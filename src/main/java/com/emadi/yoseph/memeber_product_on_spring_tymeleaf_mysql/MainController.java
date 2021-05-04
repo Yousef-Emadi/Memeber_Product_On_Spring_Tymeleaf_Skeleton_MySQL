@@ -48,8 +48,8 @@ public class MainController {
     }
 
     @GetMapping("/showEditingForm")
-    public String showEditingForm (Member mmbr){
-
+    public String showEditingForm (Member mmbr, ModelMap model){
+        model.addAttribute("member", mmbr);
         return "member_editing_form.html";
     }
 
