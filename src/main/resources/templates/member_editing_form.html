@@ -63,6 +63,36 @@
         <button>Update Member record</button>
     </form>
 
+
+  <!--/*@thymesVar id="member" type="java"*/-->
+  <form action="#" th:action="@{/creatMemberbyThymeleaf}" th:object="${selectedMember}" method="GET">
+
+    <input type="hidden" th:field="*{id}" name="id" />
+
+    <label for="name_first">First name:</label>
+    <input name="name_first2" id="name_first2" th:field="*{name_first}">
+    <br>
+    <label for="name_last">Last name:</label>
+    <input name="name_last2" id="name_last2" th:field="*{name_last}">
+    <br>
+    <label for="username">Username:</label>
+    <input name="username2" id="username2" th:field="*{username}">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password2" id="password2" th:field="*{password}">
+    <br>
+    <label for="phone">Phone number:</label>
+    <input type="tel" name="phone2" id="phone2" th:field="*{phone}">
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email2" id="email2" th:field="*{email}">
+    <br>
+    <label for="isStaff">Organization staff? </label>
+    <input name="isStaff2" id="isStaff2" th:field="*{staff}">
+    <br>
+    <button>create a new updated Member record</button>
+  </form>
+
 </fieldset>
 </body>
 </html>

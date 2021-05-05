@@ -61,4 +61,11 @@ public class MainController {
         }
             return "user_not_found.html";
     }
+
+    @GetMapping("/creatMemberbyThymeleaf")
+    @ResponseBody
+    public String updateMemberHandler(@ModelAttribute("member") Member member){
+        memberRepository.save(member);
+        return "hello";
+    }
 }
