@@ -68,6 +68,9 @@
   <form action="#" th:action="@{/creatMemberbyThymeleaf}" th:object="${selectedMember}" method="GET">
 
     <input type="hidden" th:field="*{id}" name="id" />
+    <input type="hidden" th:field="*{balance}" name="balance" />
+    <input type="hidden" th:field="*{staff}" name="balance" />
+
 
     <label for="name_first">First name:</label>
     <input name="name_first2" id="name_first2" th:field="*{name_first}">
@@ -86,9 +89,6 @@
     <br>
     <label for="email">Email:</label>
     <input type="email" name="email2" id="email2" th:field="*{email}">
-    <br>
-    <label for="isStaff">Organization staff? </label>
-    <input name="isStaff2" id="isStaff2" th:field="*{staff}">
     <br>
     <button>create a new updated Member record</button>
   </form>
