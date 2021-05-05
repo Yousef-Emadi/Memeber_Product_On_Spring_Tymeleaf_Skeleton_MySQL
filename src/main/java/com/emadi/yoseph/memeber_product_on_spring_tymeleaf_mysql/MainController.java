@@ -66,6 +66,29 @@ public class MainController {
     @ResponseBody
     public String updateMemberHandler(@ModelAttribute("member") Member member){
         memberRepository.save(member);
-        return "hello";
+        return "Modification has been done successfully. &#128522 ";
+    }
+
+
+
+
+    @PostMapping("/deleteMemberButton")
+    public String deleteMemberButtonHandler(ModelMap model){
+        model.addAttribute("myMembers", memberRepository.findAll());
+        return "dropdown_list_of_members_to_delete.html";
+    }
+
+    @GetMapping("/deleteMemeberRecord")
+    @ResponseBody
+    public String showEditingForm (int id){
+        Optional<Member> result = memberRepository.findById(id);
+        if (result.isPresent()){
+            Member selectedMember = result.get();
+            memberRepository.delete(selectedMember);
+            return "Member deleted Successfuly";
+//            return "temp";
+
+        }
+        return "user_not_found.html";
     }
 }

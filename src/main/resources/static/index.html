@@ -36,20 +36,40 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
 
+
+<!--    Login Panel-->
     <div class="row">
       <div class="one-half column" style="margin-top: 25%">
-        <h4>Welcome</h4>
+        <fieldset>
+          <legend>Login</legend>
+          <form action="/login" method="GET">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username1" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password1" required>
+            <br>
+            <button class="button button-primary">Login</button>
+          </form>
+        </fieldset>
+      </div>
+    </div>
 
+
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%">
+        <fieldset>
+          <legend>Subscribe</legend>
+          <h5>Create an account and receive 100$ balance at your first day</h5>
           <form action="/create" method="GET">
-            <p>Create an account and receive 100$ balance at your first day</p>
             <label for="name_first">First name:</label>
-            <input name="name_first" id="name_first" required>
+            <input type="text" name="name_first" id="name_first" required>
             <br>
             <label for="name_last">Last name:</label>
-            <input name="name_last" id="name_last" required>
+            <input type="text" name="name_last" id="name_last" required>
             <br>
             <label for="username">Username:</label>
-            <input name="username" id="username" required>
+            <input type="text" name="username" id="username" required>
             <br>
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required>
@@ -60,37 +80,102 @@
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" placeholder="optional">
             <br>
-            <button>Create Account</button>
-          </form>
-
-        <fieldset>
-          <legend> List members</legend>
-          <form action="/login" method="GET">
-            <label for="username">Username:</label>
-            <input name="username" id="username1" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password1" required>
-            <br>
-            <button>Login</button>
+            <button class="button button-primary">Create Account</button>
           </form>
         </fieldset>
-
-        <fieldset>
-          <legend> Edit member</legend>
-          <form action="/editMemberButton" method="GET">
-                   <button>Edit Member</button>
-          </form>
-        </fieldset>
-
-
       </div>
     </div>
+
+
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%">
+        <fieldset>
+          <legend>Admin Panel</legend>
+          <form action="/editMemberButton" method="GET">
+                   <button class="button button-primary">Edit Member</button>
+          </form>
+          <form action="/deleteMemberButton" method="post">
+            <button class="button button-primary">Delete Member</button>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+
 
 
 
   </div>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section hero">
+    <div class="container">
+      <div class="row">
+        <div class="one-half column">
+          <h4 class="hero-heading">Stop coding non-responsive sites. Let users view sites from anywhere.</h4>
+          <a class="button button-primary" href="http://getskeleton.com">Try Skeleton</a>
+        </div>
+        <div class="one-half column phones">
+          <img class="phone" src="images/iphone.png">
+          <img class="phone" src="images/iphone.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section values">
+    <div class="container">
+      <div class="row">
+        <div class="one-third column value">
+          <h2 class="value-multiplier">67%</h2>
+          <h5 class="value-heading">Purchase Increase</h5>
+          <p class="value-description">Percentage of users more likely to purchase on mobile friendly site.</p>
+        </div>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">90%</h2>
+          <h5 class="value-heading">Multi-device Users</h5>
+          <p class="value-description">Most of the world accesses the internet on multiple devices.</p>
+        </div>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">66%</h2>
+          <h5 class="value-heading">Sad Users</h5>
+          <p class="value-description">Percentage of users that are frustrated with page load times.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section get-help">
+    <div class="container">
+      <h3 class="section-heading">Need help getting started?</h3>
+      <p class="section-description">Skeleton is an amazingly easy place to start with responsive development. If you want to learn more, just visit the documentation!</p>
+      <a class="button button-primary" href="http://getskeleton.com">View Skeleton Docs</a>
+    </div>
+  </div>
+
+  <div class="section categories">
+    <div class="container">
+      <h3 class="section-heading">Responsive Images</h3>
+      <p class="section-description">Skeleton images sit easily in grid with .u-max-full-width class. I suggest exploring solution to serving different images based on device size.</p>
+      <div class="row">
+        <div class="one-half column category">
+          <img class="u-max-full-width" src="images/placeholder.png">
+        </div>
+        <div class="one-half column category">
+          <img class="u-max-full-width" src="images/placeholder.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- End Document
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>

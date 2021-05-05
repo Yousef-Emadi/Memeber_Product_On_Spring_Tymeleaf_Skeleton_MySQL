@@ -35,14 +35,14 @@
     <div class="one-half column" style="margin-top: 25%">
         <fieldset>
             <legend> Select a member to edit</legend>
-            <form action="/showEditingForm" method="GET" enctype="multipart/form-data">
+            <form action="/deleteMemeberRecord" method="GET" enctype="multipart/form-data">
                 <select name="id">
                     <!--/*@thymesVar id="myMembers" type="java"*/-->
                     <option th:each="mmbr : ${myMembers}" th:value="${mmbr.id}"
                             th:text="${mmbr.name_first} + ' ' +  ${mmbr.name_last}">
                     </option>
                 </select>
-                <button class="button button-primary">Edit member profile</button>
+                <button class="button button-primary">Delete member profile</button>
             </form>
 
         </fieldset>
