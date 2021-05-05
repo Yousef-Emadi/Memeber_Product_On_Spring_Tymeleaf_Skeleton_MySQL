@@ -14,6 +14,11 @@ public class MainController {
     @Autowired
     private IMemberRepository memberRepository;
 
+
+
+
+    /** Create new User Panel */
+
     @GetMapping("/create")
     @ResponseBody
     public String addNewMember(@RequestParam String username, @RequestParam String password, @RequestParam String name_first, @RequestParam String name_last, @RequestParam String phone, @RequestParam String email) {
@@ -30,6 +35,11 @@ public class MainController {
         return "Welcome dear " + name_first +"! \nFrom now on, You are a part of our family. &#129303";
     }
 
+
+
+
+    /** Login Panel */
+
     @GetMapping("/login")
     @ResponseBody
     public String login(@RequestParam String username, @RequestParam String password){
@@ -42,6 +52,10 @@ public class MainController {
         return "Username or password is incorrect! &#129300";
     }
 
+
+
+
+    /** Edit Member Module */
 
     @GetMapping("/editMemberButton")
     public String editMemberButtonHandler(ModelMap model){
@@ -56,8 +70,6 @@ public class MainController {
             Member selectedMember = result.get();
             model.addAttribute("selectedMember", selectedMember);
             return "member_editing_form.html";
-//            return "temp";
-
         }
             return "user_not_found.html";
     }
@@ -71,6 +83,10 @@ public class MainController {
 
 
 
+
+
+
+    /** Delete Member  Module */
 
     @PostMapping("/deleteMemberButton")
     public String deleteMemberButtonHandler(ModelMap model){
