@@ -27,7 +27,7 @@ public class Member {
     boolean isStaff;
 
 //    @OneToMany
-//    List<Purchase> purchases;
+//    List<Service> services;
 
     //Constructors:
     public Member() {

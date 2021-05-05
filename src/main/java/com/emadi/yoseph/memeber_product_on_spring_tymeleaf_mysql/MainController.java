@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+/**
+ * Project: Member Database with Hibernate
+ * Developed by: Yousef Emadi
+ * Date: APR 2021
+ * Depends on: Maven, Spring, Hibernate, Thymeleaf, MySQL
+ */
+
 @Controller
 //@RequestMapping
 public class MainController {
