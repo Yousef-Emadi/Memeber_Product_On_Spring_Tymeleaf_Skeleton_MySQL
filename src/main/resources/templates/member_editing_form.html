@@ -35,63 +35,62 @@
 
     <legend> Edit Member Profile Information</legend>
     <h4>Record ID: [[${selectedMember.id}]] </h4>
-    <h4>Name: [[${selectedMember.name_first}]] [[${selectedMember.name_last}]]  </h4><br>
+    <h4>Name: [[${selectedMember.name_first}]] [[${selectedMember.name_last}]] </h4><br>
 
+    <!--/*@thymesVar id="member" type="java"*/-->
+    <form action="#" th:action="@{/creatMemberbyThymeleaf}" th:object="${selectedMember}" method="GET">
 
-    <form>
+        <!--    Unchanged fields of member-->
+        <input type="hidden" th:field="*{id}" name="id"/>
+        <input type="hidden" th:field="*{balance}" name="balance"/>
+        <input type="hidden" th:field="*{staff}" name="balance"/>
+
+        <!--    Current fields of member which are ready to modify-->
         <label for="name_first">First name:</label>
-        <input name="name_first" id="name_first" th:value="${selectedMember.name_first}" required>
+        <input name="name_first" id="name_first" th:value="${selectedMember.name_first}" th:field="*{name_first}">
         <br>
         <label for="name_last">Last name:</label>
-        <input name="name_last" id="name_last" th:value="${selectedMember.name_last}" required>
+        <input name="name_last" id="name_last" th:value="${selectedMember.name_last}"  th:field="*{name_last}">
         <br>
         <label for="username">Username:</label>
-        <input name="username" id="username" th:value="${selectedMember.username}" required>
+        <input name="username" id="username" th:value="${selectedMember.username}" th:field="*{username}">
         <br>
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password" th:value="${selectedMember.password}" required>
+        <input type="password" name="password" id="password" th:value="${selectedMember.password}" th:field="*{password}">
         <br>
         <label for="phone">Phone number:</label>
-        <input type="tel" name="phone" id="phone" placeholder="optional" th:value="${selectedMember.phone}">
+        <input type="tel" name="phone" id="phone" placeholder="optional" th:value="${selectedMember.phone}" th:field="*{phone}">
         <br>
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" th:value="${selectedMember.email}" placeholder="optional">
-        <br>
-        <label for="isStaff">Organization staff? </label>
-        <input name="isStaff" id="isStaff" th:value="${selectedMember.isStaff}">
+        <input type="email" name="email" id="email" th:value="${selectedMember.email}" placeholder="optional" th:field="*{email}">
         <br>
         <button>Update Member record</button>
     </form>
 
 
-  <!--/*@thymesVar id="member" type="java"*/-->
-  <form action="#" th:action="@{/creatMemberbyThymeleaf}" th:object="${selectedMember}" method="GET">
+<!--    <form action="#" th:action="@{/creatMemberbyThymeleaf}" th:object="${selectedMember}" method="GET">-->
 
-    <input type="hidden" th:field="*{id}" name="id" />
-    <input type="hidden" th:field="*{balance}" name="balance" />
-    <input type="hidden" th:field="*{staff}" name="balance" />
-
-
-    <label for="name_first">First name:</label>
-    <input name="name_first2" id="name_first2" th:field="*{name_first}">
-    <br>
-    <label for="name_last">Last name:</label>
-    <input name="name_last2" id="name_last2" th:field="*{name_last}">
-    <br>
-    <label for="username">Username:</label>
-    <input name="username2" id="username2" th:field="*{username}">
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" name="password2" id="password2" th:field="*{password}">
-    <br>
-    <label for="phone">Phone number:</label>
-    <input type="tel" name="phone2" id="phone2" th:field="*{phone}">
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" name="email2" id="email2" th:field="*{email}">
-    <br>
-    <button>create a new updated Member record</button>
-  </form>
+    <form>
+        <label for="name_first">First name:</label>
+        <input name="name_first2" id="name_first2">
+        <br>
+        <label for="name_last">Last name:</label>
+        <input name="name_last2" id="name_last2">
+        <br>
+        <label for="username">Username:</label>
+        <input name="username2" id="username2" >
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password2" id="password2">
+        <br>
+        <label for="phone">Phone number:</label>
+        <input type="tel" name="phone2" id="phone2" >
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email2" id="email2" >
+        <br>
+        <button>create a new updated Member record</button>
+    </form>
 
 </fieldset>
 </body>
