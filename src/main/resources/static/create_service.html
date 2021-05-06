@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Your page title here :)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+<div class="row">
+    <div class="one-half column" style="margin-top: 10%">
+        <fieldset>
+            <legend>Create a new Service</legend>
+
+            <form action="/createService" method="POST">
+                <label for="name">Service name:</label>
+                <input type="text" name="name" id="name" required>
+                <br>
+                <label for="category">Service category:</label>
+                <input type="text" name="category" id="category" required>
+                <br>
+                <label for="description">Service description:</label>
+                <input type="text" name="description" id="description" required>
+                <br>
+                <label for="price">Price:</label>
+                <input type="number" name="price" id="price" required>
+                <br>
+
+                <button class="button button-primary">Create Service</button>
+            </form>
+        </fieldset>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Member;
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Service;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IMemberRepository;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.Optional;
 //@RequestMapping
 public class MainController {
 
+    /** <<<<<<<<<<<<<<<<<<<<<<<     Fields     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
     @Autowired
     private IMemberRepository memberRepository;
 
@@ -28,7 +31,9 @@ public class MainController {
     private IServiceRepository serviceRepository;
 
 
-    /** Create new User Panel */
+/** <<<<<<<<<<<<<<<<<<<<<<<     Member Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+    /** Create new Member Panel */
 
     @GetMapping("/create")
     @ResponseBody
@@ -48,7 +53,6 @@ public class MainController {
 
 
 
-
     /** Login Panel */
 
     @GetMapping("/login")
@@ -62,7 +66,6 @@ public class MainController {
         }
         return "Username or password is incorrect! &#129300";
     }
-
 
 
 
@@ -95,8 +98,6 @@ public class MainController {
 
 
 
-
-
     /** Delete Member  Module */
 
     @PostMapping("/deleteMemberButton")
@@ -117,6 +118,28 @@ public class MainController {
 
         }
         return "user_not_found.html";
+    }
+
+/** <<<<<<<<<<<<<<<<<<<<<<<     Service Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+    /** Create a new Service */
+
+    @PostMapping("/addServiceButton")
+    public String addServiceButtonHandler(){
+        return "redirect: create_service.html";
+    }
+
+    @PostMapping("/createService")
+    @ResponseBody
+    public String createServiceHandler(@RequestParam String name, @RequestParam String category, @RequestParam String description, @RequestParam double price){
+
+        Service newService = new Service();
+        newService.setName(name.toLowerCase());
+        newService.setCategory(category.toLowerCase());
+        newService.setDescription(description.toLowerCase().trim());
+        newService.setPrice(price);
+        serviceRepository.save(newService);
+        return "A new " + category + " service with name \"" + name + "\" created and added to the list of sevices. &#129303";
     }
 
 
