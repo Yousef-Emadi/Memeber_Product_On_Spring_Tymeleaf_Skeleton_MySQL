@@ -1,5 +1,8 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Member;
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IMemberRepository;
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +24,8 @@ public class MainController {
     @Autowired
     private IMemberRepository memberRepository;
 
-
+    @Autowired
+    private IServiceRepository serviceRepository;
 
 
     /** Create new User Panel */
@@ -114,4 +118,7 @@ public class MainController {
         }
         return "user_not_found.html";
     }
+
+
+
 }

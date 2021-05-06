@@ -1,4 +1,4 @@
-package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
+package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities;
 
 import javax.persistence.*;
 
@@ -16,8 +16,8 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String description;
     String category;
+    String description;
     double price;
 
     //Constructors:

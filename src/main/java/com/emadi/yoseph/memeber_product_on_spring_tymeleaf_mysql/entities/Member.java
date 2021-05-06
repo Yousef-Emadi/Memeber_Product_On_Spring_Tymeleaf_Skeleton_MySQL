@@ -1,6 +1,7 @@
-package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
+package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -16,18 +17,18 @@ public class Member {
     // Fields:
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String username;
-    String password;
-    String name_first;
-    String name_last;
-    String phone;
-    String email;
-    double balance;
-    boolean isStaff;
+    public int id;
+    public String username;
+    public String password;
+    public String name_first;
+    public String name_last;
+    public String phone;
+    public String email;
+    public double balance;
+    public boolean isStaff;
 
-//    @OneToMany
-//    List<Service> services;
+    @OneToMany
+    public List<Service> services;
 
     //Constructors:
     public Member() {
@@ -116,12 +117,11 @@ public class Member {
         isStaff = staff;
     }
 
-    //    public List<Purchase> getPurchases() {
-//        return purchases;
-//    }
-//
-//    public void setPurchases(List<Purchase> purchases) {
-//        this.purchases = purchases;
-//    }
+    public List<Service> getServices() {
+        return services;
+    }
 
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
 }
