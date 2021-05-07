@@ -31,6 +31,21 @@ public class MainController {
     private IServiceRepository serviceRepository;
 
 
+    /** Login Panel */
+
+    @GetMapping("/login")
+    @ResponseBody
+    public String login(@RequestParam String username, @RequestParam String password){
+        for (Member member: memberRepository.findAll()
+             ) {
+            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)){
+                return "welcome Back " + member.name_first + " ! &#128522"  ;
+            }
+        }
+        return "Username or password is incorrect! &#129300";
+    }
+
+
 /** <<<<<<<<<<<<<<<<<<<<<<<     Member Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
     /** Create new Member Panel */
@@ -57,23 +72,6 @@ public class MainController {
     }
 
 
-
-    /** Login Panel */
-
-    @GetMapping("/login")
-    @ResponseBody
-    public String login(@RequestParam String username, @RequestParam String password){
-        for (Member member: memberRepository.findAll()
-             ) {
-            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)){
-                return "welcome Back " + member.name_first + " ! &#128522"  ;
-            }
-        }
-        return "Username or password is incorrect! &#129300";
-    }
-
-
-
     /** Edit Member Module */
 
     @GetMapping("/editMemberButton")
@@ -90,7 +88,7 @@ public class MainController {
             model.addAttribute("selectedMember", selectedMember);
             return "member_editing_form.html";
         }
-            return "user_not_found.html";
+            return "requested_object_not_found.html";
     }
 
     @GetMapping("/creatMemberbyThymeleaf")
@@ -99,7 +97,6 @@ public class MainController {
         memberRepository.save(member);
         return "Member modification has been done successfully. &#128522 ";
     }
-
 
 
 
@@ -119,10 +116,8 @@ public class MainController {
             Member selectedMember = result.get();
             memberRepository.delete(selectedMember);
             return "Member deleted Successfuly";
-//            return "temp";
-
         }
-        return "user_not_found.html";
+        return "requested_object_not_found.html";
     }
 
 /** <<<<<<<<<<<<<<<<<<<<<<<     Service Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -165,7 +160,7 @@ public class MainController {
             model.addAttribute("selectedService", selectedService);
             return "service_editing_form.html";
         }
-        return "user_not_found.html";
+        return "requested_object_not_found.html";
     }
 
     @GetMapping("/creatServiceByThymeleaf")
@@ -175,6 +170,20 @@ public class MainController {
         return "Service modification has been done successfully. &#128522 ";
     }
 
+
+    /** Delete a Service */
+
+    @GetMapping("/deleteServiceButton")
+    @ResponseBody
+    public String deleteServiceButtoHandler(int id) {
+        Optional<Service> result = serviceRepository.findById(id);
+        if (result.isPresent()) {
+            Service selectedService = result.get();
+            serviceRepository.delete(selectedService);
+            return "Service deleted Successfuly";
+        }
+        return "requested_object_not_found.html";
+    }
 
 
 }

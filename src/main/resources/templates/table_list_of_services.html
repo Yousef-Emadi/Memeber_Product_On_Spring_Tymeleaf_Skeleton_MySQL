@@ -55,7 +55,10 @@
                     <form action="#" th:action="@{/showServiceEditForm}" method="GET">
                         <td><button name="id" th:value="${sv.id}">Edit</button></td>
                     </form>
-                    <td><button>Delete</button></td>
+
+                    <form action="#" th:action="@{/deleteServiceButton}" method="GET">
+                        <td><button name="id" th:value="${sv.id}">Delete</button></td>
+                    </form>
                 </tr>
 
             </table>
