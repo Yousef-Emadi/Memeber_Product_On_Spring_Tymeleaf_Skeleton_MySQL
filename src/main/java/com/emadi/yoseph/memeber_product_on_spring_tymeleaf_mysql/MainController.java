@@ -92,7 +92,7 @@ public class MainController {
     @ResponseBody
     public String updateMemberHandler(@ModelAttribute("member") Member member){
         memberRepository.save(member);
-        return "Modification has been done successfully. &#128522 ";
+        return "Member modification has been done successfully. &#128522 ";
     }
 
 
@@ -140,6 +140,33 @@ public class MainController {
         newService.setPrice(price);
         serviceRepository.save(newService);
         return "A new " + category + " service with name \"" + name + "\" created and added to the list of sevices. &#129303";
+    }
+
+
+    /** Edit a Service */
+
+    @PostMapping("/editServiceButton")
+    public String editServiceButtonHandler(ModelMap model){
+        model.addAttribute("myServices", serviceRepository.findAll());
+        return "table_list_of_services.html";
+    }
+
+   @GetMapping("/showServiceEditForm")
+   public String showServiceEditForm (int id, ModelMap model){
+        Optional<Service> result = serviceRepository.findById(id);
+        if (result.isPresent()){
+            Service selectedService = result.get();
+            model.addAttribute("selectedService", selectedService);
+            return "service_editing_form.html";
+        }
+        return "user_not_found.html";
+    }
+
+    @PostMapping("/creatServiceByThymeleaf")
+    @ResponseBody
+    public String updateServiceHandler(@ModelAttribute("selectedService") Service service){
+        serviceRepository.save(service);
+        return "Service modification has been done successfully. &#128522 ";
     }
 
 

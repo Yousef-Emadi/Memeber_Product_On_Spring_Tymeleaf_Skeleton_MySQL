@@ -31,28 +31,54 @@
 
 </head>
 <body>
-
 <div class="row">
-    <div class="one-half column" style="margin-top: 10%">
+    <div class="one-half column" style="margin-top: 25%">
         <fieldset>
-            <legend>Create a new Service</legend>
+            <legend> Select a service to edit or delete</legend>
 
-            <form action="/createService" method="POST">
-                <label for="name">Service name:</label>
-                <input type="text" name="name" id="name" required>
-                <br>
-                <label for="category">Service category:</label>
-                <input type="text" name="category" id="category" required>
-                <br>
-                <label for="description">Service description:</label>
-                <input type="text" name="description" id="description" required>
-                <br>
-                <label for="price">Price (CAD):</label>
-                <input type="number" name="price" id="price" required>
-                <br>
 
-                <button class="button button-primary">Create Service</button>
+            <table>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="sv : ${myServices}">
+                    <td th:text="${sv.name}"/>
+                    <td th:text="${sv.category}"/>
+                    <td th:text="${sv.description}"/>
+                    <td th:text="${sv.price}"/>
+                    <form action="#" th:action="@{/showServiceEditForm}" method="GET">
+                        <td><button name="id" th:value="${sv.id}">Edit</button></td>
+                    </form>
+                    <td><button>Delete</button></td>
+                </tr>
+
+            </table>
+
+
+
+
+
+
+
+
+            <form action="/showEditingForm" method="GET" enctype="multipart/form-data">
+                <select name="id">
+                    <!--/*@thymesVar id="myMembers" type="java"*/-->
+                    <option th:each="mmbr : ${myMembers}" th:value="${mmbr.id}"
+                            th:text="${mmbr.name_first} + ' ' +  ${mmbr.name_last}">
+                    </option>
+                </select>
+                <button class="button button-primary">Edit member profile</button>
             </form>
+
+
+
         </fieldset>
     </div>
 </div>

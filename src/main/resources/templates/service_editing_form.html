@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Your page title here :)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+<div class="row">
+    <div class="one-half column" style="margin-top: 10%">
+        <fieldset>
+
+            <legend> Edit Service specifications</legend>
+            <h4>Service ID: [[${selectedService.id}]] </h4>
+            <h4>Service Name: [[${selectedService.name}]] </h4><br>
+
+            <!--/*@thymesVar id="member" type="java"*/-->
+            <form action="#" th:action="@{/creatServiceByThymeleaf}" th:object="${selectedService}" method="POST">
+
+                <!--    Unchanged fields of member-->
+                <input type="hidden" th:field="*{id}" name="id"/>
+
+                <!--    Current fields of member which are ready to modify-->
+                <label for="name">Service name:</label>
+                <input type="text" name="name" id="name" th:value="${selectedService.name}"
+                       th:field="*{name}">
+                <br>
+                <label for="category">Category:</label>
+                <input type="text" name="category" id="category" th:value="${selectedService.category}"
+                       th:field="*{category}">
+                <br>
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description" th:value="${selectedService.description}"
+                       th:field="*{description}">
+                <br>
+                <label for="price">Price</label>
+                <input type="" name="price" id="price" th:value="${selectedService.price}"
+                       th:field="*{price}">
+                <br>
+                <button class="button button-primary">Update Service</button>
+            </form>
+        </fieldset>
+    </div>
+</div>
+
+<!--&lt;!&ndash;    <form action="#" th:action="@{/creatMemberbyThymeleaf}" th:object="${selectedMember}" method="GET">&ndash;&gt;-->
+
+<!--    <form>-->
+<!--        <label for="name_first">First name:</label>-->
+<!--        <input type="text" name="name_first2" id="name_first2">-->
+<!--        <br>-->
+<!--        <label for="name_last">Last name:</label>-->
+<!--        <input type="text" name="name_last2" id="name_last2">-->
+<!--        <br>-->
+<!--        <label for="username">Username:</label>-->
+<!--        <input type="text" name="username2" id="username2" >-->
+<!--        <br>-->
+<!--        <label for="password">Password:</label>-->
+<!--        <input type="password" name="password2" id="password2">-->
+<!--        <br>-->
+<!--        <label for="phone">Phone number:</label>-->
+<!--        <input type="tel" name="phone2" id="phone2" >-->
+<!--        <br>-->
+<!--        <label for="email">Email:</label>-->
+<!--        <input type="email" name="email2" id="email2" >-->
+<!--        <br>-->
+<!--        <button>create a new updated Member record</button>-->
+<!--    </form>-->
+
+
+</body>
+</html>
