@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="row">
-    <div class="one-half column" style="margin-top: 25%">
+    <div class="one-half column" style="margin: 5%">
         <fieldset>
             <legend> Select a service to edit or delete</legend>
 
@@ -60,21 +60,8 @@
 
             </table>
 
-
-
-
-
-
-
-
-            <form action="/showEditingForm" method="GET" enctype="multipart/form-data">
-                <select name="id">
-                    <!--/*@thymesVar id="myMembers" type="java"*/-->
-                    <option th:each="mmbr : ${myMembers}" th:value="${mmbr.id}"
-                            th:text="${mmbr.name_first} + ' ' +  ${mmbr.name_last}">
-                    </option>
-                </select>
-                <button class="button button-primary">Edit member profile</button>
+            <form action="/editServiceButton" method="GET">
+                <button class="button button-primary">Refresh the list</button>
             </form>
 
 

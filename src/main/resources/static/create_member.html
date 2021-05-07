@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+
+    <div class="row">
+      <div class="one-half column" style="margin: 5%">
+        <fieldset>
+          <legend>Subscribe</legend>
+          <h5>Create an account and receive 100$ balance at your first day</h5>
+          <form action="/createMember" method="GET">
+            <label for="name_first">First name:</label>
+            <input type="text" name="name_first" id="name_first" placeholder="required" required>
+            <br>
+            <label for="name_last">Last name:</label>
+            <input type="text" name="name_last" id="name_last" placeholder="required" required>
+            <br>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="required" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="required" required>
+            <br>
+            <label for="phone">Phone number:</label>
+            <input type="tel" name="phone" id="phone" placeholder="optional">
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="optional">
+            <br>
+            <button class="button button-primary">Create Account</button>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+
+
+  </div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+

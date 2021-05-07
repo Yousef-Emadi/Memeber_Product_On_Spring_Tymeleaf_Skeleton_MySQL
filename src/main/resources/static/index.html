@@ -44,48 +44,20 @@
           <legend>Login</legend>
           <form action="/login" method="GET">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username1" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password1" required>
-            <br>
-            <button class="button button-primary">Login</button>
-          </form>
-        </fieldset>
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <fieldset>
-          <legend>Subscribe</legend>
-          <h5>Create an account and receive 100$ balance at your first day</h5>
-          <form action="/create" method="GET">
-            <label for="name_first">First name:</label>
-            <input type="text" name="name_first" id="name_first" required>
-            <br>
-            <label for="name_last">Last name:</label>
-            <input type="text" name="name_last" id="name_last" required>
-            <br>
-            <label for="username">Username:</label>
             <input type="text" name="username" id="username" required>
             <br>
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required>
             <br>
-            <label for="phone">Phone number:</label>
-            <input type="tel" name="phone" id="phone" placeholder="optional">
-            <br>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="optional">
-            <br>
-            <button class="button button-primary">Create Account</button>
+            <button class="button button-primary">Login</button>
           </form>
+          <form action="/createMemberButton" method="GET">
+            <button class="button button-primary">Subscribe as a new Member</button>
+          </form>
+
         </fieldset>
       </div>
     </div>
-
 
     <div class="row">
       <div class="one-half column" style="margin-top: 25%">
@@ -102,7 +74,7 @@
             <button class="button button-primary">Add Service</button>
           </form>
 
-          <form action="/editServiceButton" method="post">
+          <form action="/editServiceButton" method="GET">
             <button class="button button-primary">Edit Service</button>
           </form>
 

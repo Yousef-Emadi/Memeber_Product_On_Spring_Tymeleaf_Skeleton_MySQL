@@ -35,7 +35,12 @@ public class MainController {
 
     /** Create new Member Panel */
 
-    @GetMapping("/create")
+    @GetMapping("/createMemberButton")
+    public String createMemberButtonHandler(){
+        return "redirect: create_member.html";
+    }
+
+    @GetMapping("/createMember")
     @ResponseBody
     public String addNewMember(@RequestParam String username, @RequestParam String password, @RequestParam String name_first, @RequestParam String name_last, @RequestParam String phone, @RequestParam String email) {
         Member newMember = new Member();
@@ -145,11 +150,12 @@ public class MainController {
 
     /** Edit a Service */
 
-    @PostMapping("/editServiceButton")
+    @GetMapping("/editServiceButton")
     public String editServiceButtonHandler(ModelMap model){
         model.addAttribute("myServices", serviceRepository.findAll());
         return "table_list_of_services.html";
     }
+
 
    @GetMapping("/showServiceEditForm")
    public String showServiceEditForm (int id, ModelMap model){
@@ -162,7 +168,7 @@ public class MainController {
         return "user_not_found.html";
     }
 
-    @PostMapping("/creatServiceByThymeleaf")
+    @GetMapping("/creatServiceByThymeleaf")
     @ResponseBody
     public String updateServiceHandler(@ModelAttribute("selectedService") Service service){
         serviceRepository.save(service);

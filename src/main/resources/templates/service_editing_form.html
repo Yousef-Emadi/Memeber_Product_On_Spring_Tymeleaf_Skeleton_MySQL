@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="row">
-    <div class="one-half column" style="margin-top: 10%">
+    <div class="one-half column" style="margin: 5%">
         <fieldset>
 
             <legend> Edit Service specifications</legend>
@@ -40,7 +40,7 @@
             <h4>Service Name: [[${selectedService.name}]] </h4><br>
 
             <!--/*@thymesVar id="member" type="java"*/-->
-            <form action="#" th:action="@{/creatServiceByThymeleaf}" th:object="${selectedService}" method="POST">
+            <form action="#" th:action="@{/creatServiceByThymeleaf}" th:object="${selectedService}" method="GET">
 
                 <!--    Unchanged fields of member-->
                 <input type="hidden" th:field="*{id}" name="id"/>
@@ -59,11 +59,17 @@
                        th:field="*{description}">
                 <br>
                 <label for="price">Price</label>
-                <input type="" name="price" id="price" th:value="${selectedService.price}"
+                <input type="" name="price" id="price" required min="0" step="0.01" th:value="${selectedService.price}"
                        th:field="*{price}">
                 <br>
                 <button class="button button-primary">Update Service</button>
             </form>
+
+
+            <form action="/editServiceButton" method="GET">
+                <button class="button button-primary">Back to the Service list</button>
+            </form>
+
         </fieldset>
     </div>
 </div>
