@@ -22,7 +22,9 @@ import java.util.Optional;
 //@RequestMapping
 public class MainController {
 
-    /** <<<<<<<<<<<<<<<<<<<<<<<     Fields     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
+    /**
+     * <<<<<<<<<<<<<<<<<<<<<<<     Fields     >>>>>>>>>>>>>>>>>>>>>>>>>>
+     */
 
     @Autowired
     private IMemberRepository memberRepository;
@@ -31,15 +33,17 @@ public class MainController {
     private IServiceRepository serviceRepository;
 
 
-    /** Login Panel */
+    /**
+     * Login Panel
+     */
 
     @GetMapping("/login")
     @ResponseBody
-    public String login(@RequestParam String username, @RequestParam String password){
-        for (Member member: memberRepository.findAll()
-             ) {
-            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)){
-                return "welcome Back " + member.name_first + " ! &#128522"  ;
+    public String login(@RequestParam String username, @RequestParam String password) {
+        for (Member member : memberRepository.findAll()
+        ) {
+            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)) {
+                return "welcome Back " + member.name_first + " ! &#128522";
             }
         }
         return "Username or password is incorrect! &#129300";
@@ -48,10 +52,12 @@ public class MainController {
 
 /** <<<<<<<<<<<<<<<<<<<<<<<     Member Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    /** Create new Member Panel */
+    /**
+     * Create new Member Panel
+     */
 
     @GetMapping("/createMemberButton")
-    public String createMemberButtonHandler(){
+    public String createMemberButtonHandler() {
         return "redirect: create_member.html";
     }
 
@@ -68,51 +74,54 @@ public class MainController {
         newMember.setBalance(100);
         newMember.setStaff(false);
         memberRepository.save(newMember);
-        return "Welcome dear " + name_first +"! \nFrom now on, You are a part of our family. &#129303";
+        return "Welcome dear " + name_first + "! \nFrom now on, You are a part of our family. &#129303";
     }
 
 
-    /** Edit Member Module */
+    /**
+     * Edit Member Module
+     */
 
     @GetMapping("/editMemberButton")
-    public String editMemberButtonHandler(ModelMap model){
+    public String editMemberButtonHandler(ModelMap model) {
         model.addAttribute("myMembers", memberRepository.findAll());
         return "dropdown_list_of_members.html";
     }
 
     @GetMapping("/showEditingForm")
-    public String showEditingForm (int id, ModelMap model){
+    public String showEditingForm(int id, ModelMap model) {
         Optional<Member> result = memberRepository.findById(id);
-        if (result.isPresent()){
+        if (result.isPresent()) {
             Member selectedMember = result.get();
             model.addAttribute("selectedMember", selectedMember);
             return "member_editing_form.html";
         }
-            return "requested_object_not_found.html";
+        return "requested_object_not_found.html";
     }
 
     @GetMapping("/creatMemberbyThymeleaf")
     @ResponseBody
-    public String updateMemberHandler(@ModelAttribute("member") Member member){
+    public String updateMemberHandler(@ModelAttribute("member") Member member) {
         memberRepository.save(member);
         return "Member modification has been done successfully. &#128522 ";
     }
 
 
-
-    /** Delete Member  Module */
+    /**
+     * Delete Member  Module
+     */
 
     @PostMapping("/deleteMemberButton")
-    public String deleteMemberButtonHandler(ModelMap model){
+    public String deleteMemberButtonHandler(ModelMap model) {
         model.addAttribute("myMembers", memberRepository.findAll());
         return "dropdown_list_of_members_to_delete.html";
     }
 
     @GetMapping("/deleteMemeberRecord")
     @ResponseBody
-    public String showEditingForm (int id){
+    public String showEditingForm(int id) {
         Optional<Member> result = memberRepository.findById(id);
-        if (result.isPresent()){
+        if (result.isPresent()) {
             Member selectedMember = result.get();
             memberRepository.delete(selectedMember);
             return "Member deleted Successfuly";
@@ -122,16 +131,18 @@ public class MainController {
 
 /** <<<<<<<<<<<<<<<<<<<<<<<     Service Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    /** Create a new Service */
+    /**
+     * Create a new Service
+     */
 
     @PostMapping("/addServiceButton")
-    public String addServiceButtonHandler(){
+    public String addServiceButtonHandler() {
         return "redirect: create_service.html";
     }
 
     @PostMapping("/createService")
     @ResponseBody
-    public String createServiceHandler(@RequestParam String name, @RequestParam String category, @RequestParam String description, @RequestParam double price){
+    public String createServiceHandler(@RequestParam String name, @RequestParam String category, @RequestParam String description, @RequestParam double price) {
 
         Service newService = new Service();
         newService.setName(name.toLowerCase());
@@ -143,19 +154,20 @@ public class MainController {
     }
 
 
-    /** Edit a Service */
+    /**
+     * Edit a Service
+     */
 
     @GetMapping("/editServiceButton")
-    public String editServiceButtonHandler(ModelMap model){
+    public String editServiceButtonHandler(ModelMap model) {
         model.addAttribute("myServices", serviceRepository.findAll());
         return "table_list_of_services.html";
     }
 
-
-   @GetMapping("/showServiceEditForm")
-   public String showServiceEditForm (int id, ModelMap model){
+    @GetMapping("/showServiceEditForm")
+    public String showServiceEditForm(int id, ModelMap model) {
         Optional<Service> result = serviceRepository.findById(id);
-        if (result.isPresent()){
+        if (result.isPresent()) {
             Service selectedService = result.get();
             model.addAttribute("selectedService", selectedService);
             return "service_editing_form.html";
@@ -165,13 +177,15 @@ public class MainController {
 
     @GetMapping("/creatServiceByThymeleaf")
     @ResponseBody
-    public String updateServiceHandler(@ModelAttribute("selectedService") Service service){
+    public String updateServiceHandler(@ModelAttribute("selectedService") Service service) {
         serviceRepository.save(service);
         return "Service modification has been done successfully. &#128522 ";
     }
 
 
-    /** Delete a Service */
+    /**
+     * Delete a Service
+     */
 
     @GetMapping("/deleteServiceButton")
     @ResponseBody
@@ -185,5 +199,13 @@ public class MainController {
         return "requested_object_not_found.html";
     }
 
+
+    /** <<<<<<<<<<<<<<<<<<<<<<<     Book Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+    @GetMapping("/listServiceButton")
+    public String listServiceButton(ModelMap model) {
+        model.addAttribute("myServices", serviceRepository.findAll());
+        return "button_list_of_services.html";
+    }
 
 }

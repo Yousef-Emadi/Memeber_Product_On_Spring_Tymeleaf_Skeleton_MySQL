@@ -344,3 +344,7 @@ th {
     font-size: large;
     font-weight: bold;
 }
+
+.serviceButton {
+    margin: 2rem;
+}
