@@ -32,10 +32,14 @@ public class MainController {
     @Autowired
     private IServiceRepository serviceRepository;
 
+    Member loggedMember; //This variable will be used further in booking services module when member start to buy services. initialize in login process
 
-    /**
-     * Login Panel
-     */
+
+
+
+    /** <<<<<<<<<<<<<<<<<<<<<<<<      Login Panel     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+
 
     @GetMapping("/login")
     @ResponseBody
@@ -43,6 +47,7 @@ public class MainController {
         for (Member member : memberRepository.findAll()
         ) {
             if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)) {
+                loggedMember = member;
                 return "welcome Back " + member.name_first + " ! &#128522";
             }
         }
@@ -76,6 +81,7 @@ public class MainController {
         memberRepository.save(newMember);
         return "Welcome dear " + name_first + "! \nFrom now on, You are a part of our family. &#129303";
     }
+
 
 
     /**
@@ -182,6 +188,10 @@ public class MainController {
         return "Service modification has been done successfully. &#128522 ";
     }
 
+    @GetMapping("/backToHomepageButton")
+    public String backToHomepageButtonHandler() {
+        return "redirect: index.html";
+    }
 
     /**
      * Delete a Service
@@ -203,9 +213,27 @@ public class MainController {
     /** <<<<<<<<<<<<<<<<<<<<<<<     Book Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
 
     @GetMapping("/listServiceButton")
-    public String listServiceButton(ModelMap model) {
-        model.addAttribute("myServices", serviceRepository.findAll());
+    public String listServiceButton(ModelMap model1, ModelMap model2) {
+        model1.addAttribute("myServices", serviceRepository.findAll());
+
+        if (loggedMember != null) {
+            model2.addAttribute("loggedMember", loggedMember);
+        }else{
+            return "you_need_to_loggin_before_booking_any_service.html";
+        }
         return "button_list_of_services.html";
+    }
+
+    @GetMapping("/showServiceDetailToBuy")
+    public String showServiceDetailToBuyHandler(int id, ModelMap model){
+        Optional<Service> result = serviceRepository.findById(id);
+        if (result.isPresent()) {
+            Service selectedService = result.get();
+            model.addAttribute("selectedService", selectedService);
+            return "service_detail_to_buy.html";
+        }
+        return "requested_object_not_found.html";
+
     }
 
 }
