@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+<div class="row">
+  <div class="one-half column" style="margin: 5%">
+    <fieldset>
+      <legend> Service Booking Result</legend>
+
+      <h1>Thank you [[${loggedMember.name_first}]]</h1>
+      <h1>[[${bookedService.name}]] service has been booked for you successfully</h1>
+      <h1>[[${selectedService.name}]]</h1>
+
+        <h4>We will be in touch with you for further coordination about your booked service</h4>
+
+
+      <hr>
+      <form action="/listServiceButton" method="GET">
+        <button class="button button-primary">Back to the list of Services</button>
+      </form>
+
+      <form action="/backToHomepageButton" method="GET">
+        <button class="button button-primary">Back to Home Page</button>
+      </form>
+
+
+
+    </fieldset>
+  </div>
+</div>
+
+</body>
+</html>

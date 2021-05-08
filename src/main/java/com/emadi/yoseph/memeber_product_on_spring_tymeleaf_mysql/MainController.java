@@ -42,16 +42,21 @@ public class MainController {
 
 
     @GetMapping("/login")
-    @ResponseBody
-    public String login(@RequestParam String username, @RequestParam String password) {
+    public String login(@RequestParam String username, @RequestParam String password, ModelMap model) {
         for (Member member : memberRepository.findAll()
         ) {
             if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)) {
                 loggedMember = member;
-                return "welcome Back " + member.name_first + " ! &#128522";
+                model.addAttribute("loggedMember", loggedMember);
+                return "member_landing_page.html";
             }
         }
-        return "Username or password is incorrect! &#129300";
+        return "username_password_incorrect.html";
+    }
+
+    @GetMapping("/backToMemberAreaButton")
+    public String backToMemberAreaButtonHandler(){
+        return "member_landing_page.html";
     }
 
 
@@ -213,11 +218,10 @@ public class MainController {
     /** <<<<<<<<<<<<<<<<<<<<<<<     Book Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
 
     @GetMapping("/listServiceButton")
-    public String listServiceButton(ModelMap model1, ModelMap model2) {
-        model1.addAttribute("myServices", serviceRepository.findAll());
+    public String listServiceButton(ModelMap model) {
+        model.addAttribute("myServices", serviceRepository.findAll());
 
         if (loggedMember != null) {
-            model2.addAttribute("loggedMember", loggedMember);
         }else{
             return "you_need_to_loggin_before_booking_any_service.html";
         }
@@ -233,7 +237,21 @@ public class MainController {
             return "service_detail_to_buy.html";
         }
         return "requested_object_not_found.html";
+    }
 
+    @GetMapping("/bookService")
+    public String bookService(int id, Member loggedMember, ModelMap model1, ModelMap model2) {
+        Optional<Service> result = serviceRepository.findById(id);
+        if (result.isPresent()) {
+            Service bookedService = result.get();
+            loggedMember.services.add(bookedService);
+            loggedMember.balance = loggedMember.balance - bookedService.getPrice();
+            model1.addAttribute("loggedMember", loggedMember);
+            model1.addAttribute("bookedService", bookedService);
+
+            return "booking_result";
+        }
+        return "requested_object_not_found.html";
     }
 
 }

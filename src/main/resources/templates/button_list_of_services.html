@@ -34,9 +34,7 @@
 <div class="row">
     <div class="one-half column" style="margin: 5%">
         <fieldset>
-            <legend> Select a service to edit or delete</legend>
-
-            <h5>Hey [[${loggedMember.name_first}]]</h5>
+            <legend> Select a service to book</legend>
 
             <form action="#" th:action="@{/showServiceDetailToBuy}" method="GET">
 
@@ -48,7 +46,13 @@
             </form>
 
 
+
             <hr>
+
+            <form action="/backToMemberAreaButton" method="GET">
+                <button class="button button-primary">Back to Member Area</button>
+            </form>
+
             <form action="/backToHomepageButton" method="GET">
                 <button class="button button-primary">Back to Home Page</button>
             </form>
