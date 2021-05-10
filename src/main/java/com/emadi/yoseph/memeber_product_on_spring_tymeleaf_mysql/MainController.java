@@ -32,6 +32,7 @@ public class MainController {
     @Autowired
     private IServiceRepository serviceRepository;
 
+
     Member loggedMember; //This variable will be used further in booking services module when member start to buy services. initialize in login process
 
 
@@ -240,14 +241,16 @@ public class MainController {
     }
 
     @GetMapping("/bookService")
-    public String bookService(int id, Member loggedMember, ModelMap model1, ModelMap model2) {
+    public String bookService(int id, ModelMap model1, ModelMap model2) {
         Optional<Service> result = serviceRepository.findById(id);
         if (result.isPresent()) {
             Service bookedService = result.get();
+            System.out.println(bookedService.getName());
+
             loggedMember.services.add(bookedService);
             loggedMember.balance = loggedMember.balance - bookedService.getPrice();
             model1.addAttribute("loggedMember", loggedMember);
-            model1.addAttribute("bookedService", bookedService);
+            model2.addAttribute("bookedService", bookedService);
 
             return "booking_result";
         }
