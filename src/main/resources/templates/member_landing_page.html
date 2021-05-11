@@ -40,11 +40,13 @@
     <div class="one-half column" style="margin-top: 15%">
       <fieldset>
         <legend>Book Services</legend>
-        <h3>Welcome Back [[${loggedMember.name_first}]]! &#128522</h3>
+        <h3>Welcome [[${loggedMember.name_first}]]! &#128522</h3>
         <form action="/listServiceButton" method="GET">
           <button class="button button-primary">Visit our Services</button>
         </form>
-
+        <form action="/editProfile" method="GET">
+          <button class="button button-primary">Edit your Profile</button>
+        </form>
       </fieldset>
     </div>
   </div>

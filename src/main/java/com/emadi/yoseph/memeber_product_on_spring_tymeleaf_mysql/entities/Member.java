@@ -16,7 +16,7 @@ import java.util.List;
 public class Member {
     // Fields:
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public int id;
     public String username;
     public String password;
@@ -26,9 +26,8 @@ public class Member {
     public String email;
     public double balance;
     public boolean isStaff;
-
-    @OneToMany
-    public List<Service> services;
+    @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    public List<Order> orders;
 
     //Constructors:
     public Member() {
@@ -117,11 +116,11 @@ public class Member {
         isStaff = staff;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

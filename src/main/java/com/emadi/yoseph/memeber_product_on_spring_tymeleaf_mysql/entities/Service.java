@@ -14,12 +14,12 @@ import javax.persistence.*;
 public class Service {
     //Fields:
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String name;
-    String category;
-    String description;
-    double price;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    public int id;
+    public String name;
+    public String category;
+    public String description;
+    public double price;
 
     //Constructors:
     public Service() {

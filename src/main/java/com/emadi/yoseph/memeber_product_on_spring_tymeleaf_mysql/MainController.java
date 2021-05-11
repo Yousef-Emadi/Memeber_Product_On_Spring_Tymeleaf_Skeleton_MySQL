@@ -1,14 +1,18 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Member;
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Order;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Service;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IMemberRepository;
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IOrderRepository;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -32,6 +36,8 @@ public class MainController {
     @Autowired
     private IServiceRepository serviceRepository;
 
+    @Autowired
+    private IOrderRepository orderRepository;
 
     Member loggedMember; //This variable will be used further in booking services module when member start to buy services. initialize in login process
 
@@ -55,8 +61,10 @@ public class MainController {
         return "username_password_incorrect.html";
     }
 
+
     @GetMapping("/backToMemberAreaButton")
-    public String backToMemberAreaButtonHandler(){
+    public String backToMemberAreaButton(ModelMap model){
+        model.addAttribute("loggedMember", loggedMember);
         return "member_landing_page.html";
     }
 
@@ -73,8 +81,7 @@ public class MainController {
     }
 
     @GetMapping("/createMember")
-    @ResponseBody
-    public String addNewMember(@RequestParam String username, @RequestParam String password, @RequestParam String name_first, @RequestParam String name_last, @RequestParam String phone, @RequestParam String email) {
+    public String addNewMember(@RequestParam String username, @RequestParam String password, @RequestParam String name_first, @RequestParam String name_last, @RequestParam String phone, @RequestParam String email, ModelMap model) {
         Member newMember = new Member();
         newMember.setName_first(name_first.toLowerCase());
         newMember.setName_last(name_last.toLowerCase());
@@ -85,7 +92,9 @@ public class MainController {
         newMember.setBalance(100);
         newMember.setStaff(false);
         memberRepository.save(newMember);
-        return "Welcome dear " + name_first + "! \nFrom now on, You are a part of our family. &#129303";
+        loggedMember = newMember;
+        model.addAttribute("loggedMember", loggedMember);
+        return "member_landing_page.html";
     }
 
 
@@ -216,6 +225,18 @@ public class MainController {
     }
 
 
+
+
+    /** <<<<<<<<<<<<<<<<<<<<<<<     Edit your profile     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+
+    @GetMapping("/editProfile")
+    public String editProfileButtonHandler(ModelMap model) {
+            model.addAttribute("selectedMember", loggedMember);
+            return "member_editing_form.html";
+        }
+
+
     /** <<<<<<<<<<<<<<<<<<<<<<<     Book Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
 
     @GetMapping("/listServiceButton")
@@ -244,14 +265,15 @@ public class MainController {
     public String bookService(int id, ModelMap model1, ModelMap model2) {
         Optional<Service> result = serviceRepository.findById(id);
         if (result.isPresent()) {
-            Service bookedService = result.get();
-            System.out.println(bookedService.getName());
 
-            loggedMember.services.add(bookedService);
-            loggedMember.balance = loggedMember.balance - bookedService.getPrice();
+            Service selectedService = result.get();
+            Order newOrder = new Order("no comment", selectedService);
+            loggedMember.orders.add(newOrder);
+            loggedMember.balance = newOrder.service.price;
+            orderRepository.save(newOrder);
+            memberRepository.save(loggedMember);
             model1.addAttribute("loggedMember", loggedMember);
-            model2.addAttribute("bookedService", bookedService);
-
+            model2.addAttribute("selectedService", newOrder.service);
             return "booking_result";
         }
         return "requested_object_not_found.html";
