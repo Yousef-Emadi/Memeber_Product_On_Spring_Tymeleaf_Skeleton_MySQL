@@ -1,7 +1,5 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities;
 
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,18 +21,18 @@ public class Order {
     public int id;
     public LocalDateTime date;
     public String comment;
-    @ManyToAny(metaColumn = null, fetch = FetchType.EAGER)
-    public Service service;
+    @OneToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    public List<Service> services;
 
 
     //Constructors:
     public Order() {
     }
 
-    public Order(String comment, Service service) {
+    public Order(String comment, List<Service> services) {
         this.date = LocalDateTime.now();
         this.comment = comment;
-        this.service = service;
+        this.services = services;
     }
 
 
@@ -66,11 +64,11 @@ public class Order {
         this.comment = comment;
     }
 
-    public Service getService() {
-        return service;
+    public List<Service> getServices() {
+        return services;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 }//end of class

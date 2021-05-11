@@ -267,13 +267,23 @@ public class MainController {
         if (result.isPresent()) {
 
             Service selectedService = result.get();
-            Order newOrder = new Order("no comment", selectedService);
+
+            List<Service> memberCart = new ArrayList<>();
+
+            Order newOrder = new Order("no comment", memberCart);
+
+            loggedMember.orders = new ArrayList<>();
+
+            newOrder.services.add(selectedService);
             loggedMember.orders.add(newOrder);
-            loggedMember.balance = newOrder.service.price;
+            for (Service service: newOrder.services
+                 ) {
+                loggedMember.balance -= service.getPrice();
+            }
             orderRepository.save(newOrder);
             memberRepository.save(loggedMember);
             model1.addAttribute("loggedMember", loggedMember);
-            model2.addAttribute("selectedService", newOrder.service);
+            model2.addAttribute("selectedService", selectedService);
             return "booking_result";
         }
         return "requested_object_not_found.html";
