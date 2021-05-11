@@ -1,5 +1,6 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
+import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.email.EmailService;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Member;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Order;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Service;
@@ -38,6 +39,9 @@ public class MainController {
 
     @Autowired
     private IOrderRepository orderRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     Member loggedMember; //This variable will be used further in booking services module when member start to buy services. initialize in login process
 
@@ -288,5 +292,14 @@ public class MainController {
         }
         return "requested_object_not_found.html";
     }
+
+
+    @GetMapping("/sendEmailButton")
+    @ResponseBody
+    public String sendEmailButton(){
+        emailService.sendMail("rahaa1400@gmail.com", "Hi", "Ho ho ho");
+        return "done";
+    }
+
 
 }
