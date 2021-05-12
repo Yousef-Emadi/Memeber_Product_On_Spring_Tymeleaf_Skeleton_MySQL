@@ -2,18 +2,13 @@ package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
 
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.email.EmailService;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Member;
-import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Order;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Service;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IMemberRepository;
-import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IOrderRepository;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -37,8 +32,8 @@ public class MainController {
     @Autowired
     private IServiceRepository serviceRepository;
 
-    @Autowired
-    private IOrderRepository orderRepository;
+//    @Autowired
+//    private IOrderRepository orderRepository;
 
     @Autowired
     private EmailService emailService;
@@ -270,20 +265,11 @@ public class MainController {
         if (result.isPresent()) {
 
             Service selectedService = result.get();
-
-            List<Service> memberCart = new ArrayList<>();
-
-            Order newOrder = new Order("no comment", memberCart);
-
-            loggedMember.orders = new ArrayList<>();
-
-            newOrder.services.add(selectedService);
-            loggedMember.orders.add(newOrder);
-            for (Service service: newOrder.services
-                 ) {
-                loggedMember.balance -= service.getPrice();
+            if (loggedMember.services.contains(selectedService)) {
+                return "alredy_booked_service.html";
             }
-            orderRepository.save(newOrder);
+            loggedMember.services.add(selectedService);
+            loggedMember.balance = loggedMember.balance - selectedService.price;
             memberRepository.save(loggedMember);
             model1.addAttribute("loggedMember", loggedMember);
             model2.addAttribute("selectedService", selectedService);
