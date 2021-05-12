@@ -31,24 +31,25 @@
 
 </head>
 <body>
+<div class="row">
+  <div class="one-half column" style="margin: 5%">
+    <fieldset>
+      <legend> Sorry !</legend>
 
-<div class="section get-help">
-  <div class="container">
-    <h3 class="section-heading">Sorry! But please ...</h3>
+      <img th:src="@{${localImageUrl}}" alt="error picture" width="200">
+      <h1>Something is wrong and we are always here to work on it</h1>
 
 
-    <p class="section-description">First, you need to log in before booking any service</p>
 
-    <img th:src="@{${localImageUrl}}" alt="error picture" width="150">
+      <form action="/backToHomepageButton" method="GET">
+        <button class="button button-primary">Back to Home Page</button>
+      </form>
 
-    <hr>
-    <form action="/backToHomepageButton" method="GET">
-      <button class="button button-primary">Back to Home Page to log in</button>
-    </form>
+
+
+    </fieldset>
   </div>
 </div>
 
-
-
-
-
+</body>
+</html>

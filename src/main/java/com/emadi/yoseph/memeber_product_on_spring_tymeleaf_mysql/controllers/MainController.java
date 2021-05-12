@@ -1,4 +1,4 @@
-package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql;
+package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.controllers;
 
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.email.EmailService;
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.entities.Member;
@@ -7,6 +7,7 @@ import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IM
 import com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.repositories.IServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
@@ -51,6 +52,11 @@ public class MainController {
     public String login(@RequestParam String username, @RequestParam String password, ModelMap model) {
         for (Member member : memberRepository.findAll()
         ) {
+            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0) && member.isStaff) {
+                loggedMember = member;
+                model.addAttribute("loggedMember", loggedMember);
+                return "admin_landing_page.html";
+            }
             if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)) {
                 loggedMember = member;
                 model.addAttribute("loggedMember", loggedMember);
@@ -243,6 +249,8 @@ public class MainController {
 
         if (loggedMember != null) {
         }else{
+            Model model1;
+            model.addAttribute("localImageUrl", "images/please.gif");
             return "you_need_to_loggin_before_booking_any_service.html";
         }
         return "button_list_of_services.html";
@@ -279,7 +287,7 @@ public class MainController {
     }
 
 
-    /** <<<<<<<<<<<<<<<<<<<<<<<     Email Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+    /** <<<<<<<<<<<<<<<<<<<<<<<     Email Services (TO BE DEVELOPED)     >>>>>>>>>>>>>>>>>>>>>>>>>> */
 
     @GetMapping("/sendEmailButton")
     @ResponseBody
