@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Member Management System</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+<div class="row">
+  <div class="one-half column" style="margin: 5%">
+    <fieldset>
+      <legend> Service Creating</legend>
+
+
+        <h4>A new [[${newService.category}]] service with name [[${newService.name}]] created
+          and added to the list of sevices &#128515</h4>
+
+      <hr>
+      <form action="/backToUserControlPanel" method="GET">
+        <button class="button button-primary">Back to Admin Area</button>
+      </form>
+
+      <form action="/backToHomepageButton" method="GET">
+        <button class="button button-primary">Back to Home Page</button>
+      </form>
+
+
+
+    </fieldset>
+  </div>
+</div>
+
+</body>
+</html>

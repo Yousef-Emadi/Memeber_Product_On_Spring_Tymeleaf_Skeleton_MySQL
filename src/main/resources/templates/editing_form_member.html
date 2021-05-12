@@ -6,7 +6,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Your page title here :)</title>
+    <title>Member Management System</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -65,11 +65,11 @@
                        th:field="*{password}">
                 <br>
                 <label for="phone">Phone number:</label>
-                <input type="tel" name="phone" id="phone" placeholder="optional" th:value="${selectedMember.phone}"
+                <input type="tel" name="phone" id="phone" th:value="${selectedMember.phone}"
                        th:field="*{phone}">
                 <br>
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" th:value="${selectedMember.email}" placeholder="optional"
+                <input type="email" name="email" id="email" th:value="${selectedMember.email}"
                        th:field="*{email}">
                 <br>
                 <button class="button button-primary">Update Member record</button>
@@ -77,12 +77,13 @@
 
 
             <hr>
-            <form action="/logout" method="GET">
-                <button class="button button-primary">log out</button>
-            </form>
 
             <form action="/backToUserControlPanel" method="GET">
-                <button class="button button-primary">Back to Member Area</button>
+                <button class="button button-primary">Cancel and Back</button>
+            </form>
+
+            <form action="/logout" method="GET">
+                <button class="button button-primary">log out</button>
             </form>
 
             <form action="/backToHomepageButton"  method="GET">

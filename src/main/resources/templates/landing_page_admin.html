@@ -6,7 +6,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Your page title here :)</title>
+    <title>Member Management System</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -41,8 +41,13 @@
             <fieldset>
                 <legend>Admin Panel</legend>
                 <h3>Welcome [[${loggedMember.name_first}]]! &#128522</h3>
+
+                <form action="/createMemberButton" method="GET">
+                    <button class="button button-primary">register a new Member</button>
+                </form>
+
                 <form action="/editMemberButton" method="GET">
-                    <button class="button button-primary">Edit Member</button>
+                    <button class="button button-primary">Edit or Remove Members</button>
                 </form>
 
 
@@ -50,9 +55,9 @@
                     <button class="button button-primary">Send Email to Members(to be developed)</button>
                 </form>
 
-                <form action="/deleteMemberButton" method="post">
-                    <button class="button button-primary">Delete Member</button>
-                </form>
+<!--                <form action="/deleteMemberButton" method="post">-->
+<!--                    <button class="button button-primary">Delete Member</button>-->
+<!--                </form>-->
                 <hr>
                 <form action="/listBookedServices" method="GET">
                     <button class="button button-primary">View Booked Services</button>

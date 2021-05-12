@@ -55,12 +55,12 @@ public class MainController {
             if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0) && member.admin) {
                 loggedMember = member;
                 model.addAttribute("loggedMember", loggedMember);
-                return "admin_landing_page.html";
+                return "landing_page_admin.html";
             }
             if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0)) {
                 loggedMember = member;
                 model.addAttribute("loggedMember", loggedMember);
-                return "member_landing_page.html";
+                return "landing_page_member.html";
             }
             if ((member.username.compareToIgnoreCase(username) == 0)) {
                 loggedMember = member;
@@ -75,8 +75,8 @@ public class MainController {
     @GetMapping("/backToUserControlPanel")
     public String backToMemberAreaButton(ModelMap model) {
         model.addAttribute("loggedMember", loggedMember);
-        if (loggedMember.admin) return "admin_landing_page.html";
-        return "member_landing_page.html";
+        if (loggedMember.admin) return "landing_page_admin.html";
+        return "landing_page_member.html";
     }
 
     @GetMapping("/logout")
@@ -111,7 +111,7 @@ public class MainController {
         memberRepository.save(newMember);
         loggedMember = newMember;
         model.addAttribute("loggedMember", loggedMember);
-        return "member_landing_page.html";
+        return "landing_page_member.html";
     }
 
 
@@ -122,7 +122,7 @@ public class MainController {
     @GetMapping("/editMemberButton")
     public String editMemberButtonHandler(ModelMap model) {
         model.addAttribute("myMembers", memberRepository.findAll());
-        return "table_list_of_members.html";
+        return "list_table_members.html";
     }
 
     @GetMapping("/showEditingForm")
@@ -131,18 +131,19 @@ public class MainController {
         if (result.isPresent()) {
             Member selectedMember = result.get();
             model.addAttribute("selectedMember", selectedMember);
-            return "member_editing_form.html";
+            return "editing_form_member.html";
         }
-        return "requested_object_not_found.html";
+        return "error_requested_object_not_found.html";
     }
 
     @GetMapping("/creatMemberbyThymeleaf")
-    public String updateMemberHandler(@ModelAttribute("member") Member member, ModelMap model) {
+    public String updateMemberHandler(@ModelAttribute("member") Member member) {
         memberRepository.save(member);
-        model.addAttribute("loggedMember", loggedMember);
-        if (loggedMember.admin) return "admin_landing_page.html";
-        return "member_landing_page.html";
+        return "result_member_modified.html";
     }
+
+
+
 
 
     /**
@@ -162,10 +163,10 @@ public class MainController {
             Member selectedMember = result.get();
             memberRepository.delete(selectedMember);
             model.addAttribute("loggedMember", loggedMember);
-            if (loggedMember.admin) return "admin_landing_page.html";
-            return "member_landing_page.html";
+            if (loggedMember.admin) return "landing_page_admin.html";
+            return "landing_page_member.html";
         }
-        return "requested_object_not_found.html";
+        return "error_requested_object_not_found.html";
     }
 
     /**
@@ -176,7 +177,7 @@ public class MainController {
     @GetMapping("/listBookedServices")
     public String listBookedServicesHandler(ModelMap model) {
         model.addAttribute("myMembers", memberRepository.findAll());
-        return "table_list_of_booked_services.html";
+        return "list_table_booked_services.html";
     }
 
     /**
@@ -198,7 +199,7 @@ public class MainController {
         newService.setPrice(price);
         serviceRepository.save(newService);
         model.addAttribute("newService", newService);
-        return "service_created_result.html";
+        return "result_service_created.html";
     }
 
 
@@ -209,7 +210,7 @@ public class MainController {
     @GetMapping("/editServiceButton")
     public String editServiceButtonHandler(ModelMap model) {
         model.addAttribute("myServices", serviceRepository.findAll());
-        return "table_list_of_services.html";
+        return "list_table_services.html";
     }
 
     @GetMapping("/showServiceEditForm")
@@ -218,16 +219,15 @@ public class MainController {
         if (result.isPresent()) {
             Service selectedService = result.get();
             model.addAttribute("selectedService", selectedService);
-            return "service_editing_form.html";
+            return "editing_form_service.html";
         }
-        return "requested_object_not_found.html";
+        return "error_requested_object_not_found.html";
     }
 
     @GetMapping("/creatServiceByThymeleaf")
-    @ResponseBody
     public String updateServiceHandler(@ModelAttribute("selectedService") Service service) {
         serviceRepository.save(service);
-        return "Service modification has been done successfully. &#128522 ";
+        return "result_service_modified.html";
     }
 
     @GetMapping("/backToHomepageButton")
@@ -240,15 +240,14 @@ public class MainController {
      */
 
     @GetMapping("/deleteServiceButton")
-    @ResponseBody
     public String deleteServiceButtoHandler(int id) {
         Optional<Service> result = serviceRepository.findById(id);
         if (result.isPresent()) {
             Service selectedService = result.get();
             serviceRepository.delete(selectedService);
-            return "Service deleted Successfuly";
+            return "result_member_modified.html";
         }
-        return "requested_object_not_found.html";
+        return "error_requested_object_not_found.html";
     }
 
 
@@ -260,7 +259,7 @@ public class MainController {
     @GetMapping("/editProfile")
     public String editProfileButtonHandler(ModelMap model) {
         model.addAttribute("selectedMember", loggedMember);
-        return "member_editing_form.html";
+        return "editing_form_member.html";
     }
 
 
@@ -272,13 +271,12 @@ public class MainController {
     public String listServiceButton(ModelMap model) {
         model.addAttribute("myServices", serviceRepository.findAll());
 
-        if (loggedMember != null) {
-        } else {
+        if (loggedMember == null) {
             Model model1;
             model.addAttribute("localImageUrl", "images/please.gif");
-            return "you_need_to_loggin_before_booking_any_service.html";
+            return "warning_loggin_before_booking_any_service.html";
         }
-        return "button_list_of_services.html";
+        return "list_buttons_of_services.html";
     }
 
     @GetMapping("/showServiceDetailToBuy")
@@ -289,7 +287,7 @@ public class MainController {
             model.addAttribute("selectedService", selectedService);
             return "service_detail_to_buy.html";
         }
-        return "requested_object_not_found.html";
+        return "error_requested_object_not_found.html";
     }
 
     @GetMapping("/bookService")
@@ -299,16 +297,16 @@ public class MainController {
 
             Service selectedService = result.get();
             if (loggedMember.services.contains(selectedService)) {
-                return "alredy_booked_service.html";
+                return "warning_alredy_booked_service.html";
             }
             loggedMember.services.add(selectedService);
             loggedMember.balance = loggedMember.balance - selectedService.price;
             memberRepository.save(loggedMember);
             model1.addAttribute("loggedMember", loggedMember);
             model2.addAttribute("selectedService", selectedService);
-            return "booking_result";
+            return "result_booking";
         }
-        return "requested_object_not_found.html";
+        return "error_requested_object_not_found.html";
     }
 
 
@@ -319,6 +317,7 @@ public class MainController {
     @GetMapping("/sendEmailButton")
     @ResponseBody
     public String sendEmailButton() {
+
         emailService.sendMail("usef.emadi@gmail.com", "Test Email", "Test message from Member application");
         return "Email has been sent!";
     }

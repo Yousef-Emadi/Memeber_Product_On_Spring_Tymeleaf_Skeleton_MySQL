@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Member Management System</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -31,24 +31,36 @@
 
 </head>
 <body>
+<div class="row">
+  <div class="one-half column" style="margin: 5%">
+    <fieldset>
+      <legend> Service Booking Result</legend>
 
-<div class="section get-help">
-  <div class="container">
-    <h3 class="section-heading">Sorry! But please ...</h3>
+      <h1>Thank you [[${loggedMember.name_first}]]</h1>
+
+      <h4>[[${selectedService.name}]] service has been booked for you successfully</h4>
+
+      <h4>We will be in touch with you for further coordination about your booked service</h4>
 
 
-    <p class="section-description">First, you need to log in before booking any service</p>
+      <hr>
+      <form action="/listServiceButton" method="GET">
+        <button class="button button-primary">Back to the list of Services</button>
+      </form>
 
-    <img th:src="@{${localImageUrl}}" alt="error picture" width="150">
+      <form action="/backToUserControlPanel" method="GET">
+        <button class="button button-primary">Back to your panel</button>
+      </form>
 
-    <hr>
-    <form action="/backToHomepageButton" method="GET">
-      <button class="button button-primary">Back to Home Page to log in</button>
-    </form>
+      <form action="/backToHomepageButton" method="GET">
+        <button class="button button-primary">Back to Home Page</button>
+      </form>
+
+
+
+    </fieldset>
   </div>
 </div>
 
-
-
-
-
+</body>
+</html>

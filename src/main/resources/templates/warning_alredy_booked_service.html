@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Member Management System</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -37,19 +37,14 @@
       <legend> Service Booking Result</legend>
 
       <h1>Thank you [[${loggedMember.name_first}]]</h1>
-
       <h4>[[${selectedService.name}]] service has been booked for you successfully</h4>
 
-      <h4>We will be in touch with you for further coordination about your booked service</h4>
+        <h4>We will be in touch with you for further coordination about your booked service</h4>
 
 
       <hr>
       <form action="/listServiceButton" method="GET">
         <button class="button button-primary">Back to the list of Services</button>
-      </form>
-
-      <form action="/backToUserControlPanel" method="GET">
-        <button class="button button-primary">Back to Admin Area</button>
       </form>
 
       <form action="/backToHomepageButton" method="GET">

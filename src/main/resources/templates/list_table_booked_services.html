@@ -6,7 +6,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Your page title here :)</title>
+    <title>Member Management System</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -39,37 +39,48 @@
 
             <table>
                 <tr>
-                    <th>Service Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Price</th>
+                    <th>Member ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th>Booked Services</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th></th>
                     <th></th>
                 </tr>
 
-                <tr th:each="sv : ${myServices}">
-                    <td th:text="${sv.name}"/>
-                    <td th:text="${sv.category}"/>
-                    <td th:text="${sv.description}"/>
-                    <td th:text="${sv.price}"/>
-                    <form action="#" th:action="@{/showServiceEditForm}" method="GET">
-                        <td><button name="id" th:value="${sv.id}">Edit</button></td>
-                    </form>
+                <tr th:each="mmbr : ${myMembers}">
+                    <td th:text="${mmbr.id}"/>
+                    <td th:text="${mmbr.name_first}"/>
+                    <td th:text="${mmbr.name_last}"/>
+                    <td th:text="${mmbr.username}"/>
+                    <td th:text="${mmbr.phone}"/>
+                    <td th:text="${mmbr.email}"/>
+                    <td th:text="${mmbr.balance}"/>$
 
-                    <form action="#" th:action="@{/deleteServiceButton}" method="GET">
-                        <td><button name="id" th:value="${sv.id}">Delete</button></td>
-                    </form>
+                    <td th:each="sv : ${mmbr.services}">
+                        [[${sv.name}]]
+                    </td>
+
+
+<!--                    <form action="#" th:action="@{/showServiceEditForm}" method="GET">-->
+<!--                        <td><button name="id" th:value="${sv.id}">Edit</button></td>-->
+<!--                    </form>-->
+
+<!--                    <form action="#" th:action="@{/deleteServiceButton}" method="GET">-->
+<!--                        <td><button name="id" th:value="${sv.id}">Delete</button></td>-->
+<!--                    </form>-->
                 </tr>
 
             </table>
 
-            <form action="/editServiceButton" method="GET">
-                <button class="button button-primary">Refresh the list</button>
-            </form>
-
 
             <hr>
-
             <form action="/backToUserControlPanel" method="GET">
                 <button class="button button-primary">Back to Admin Area</button>
             </form>

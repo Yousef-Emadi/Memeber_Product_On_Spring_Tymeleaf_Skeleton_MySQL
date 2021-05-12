@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Member Management System</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -31,12 +31,30 @@
 
 </head>
 <body>
-<fieldset>
-    <h2> Member not found in our Database</h2>
-  <button onclick="window.location.href='/index'">Return to Home Page</button>
+<div class="row">
+  <div class="one-half column" style="margin: 5%">
+    <fieldset>
+      <legend>Done</legend>
 
-  <button></button>
 
-</fieldset>
+
+      <h3>Service has been deleted &#128526</h3>
+
+
+      <hr>
+      <form action="/backToUserControlPanel" method="GET">
+        <button class="button button-primary">Back to your Panel</button>
+      </form>
+
+      <form action="/backToHomepageButton" method="GET">
+        <button class="button button-primary">Back to Home Page</button>
+      </form>
+
+
+
+    </fieldset>
+  </div>
+</div>
+
 </body>
 </html>

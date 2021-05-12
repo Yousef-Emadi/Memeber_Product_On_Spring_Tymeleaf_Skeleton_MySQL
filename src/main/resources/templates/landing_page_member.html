@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>Member Management System</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -31,29 +31,36 @@
 
 </head>
 <body>
-<div class="row">
-  <div class="one-half column" style="margin: 5%">
-    <fieldset>
-      <legend> Service Creating</legend>
 
+<!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="container">
 
-        <h4>A new [[${newService.category}]] service with name [[${newService.name}]] created
-          and added to the list of sevices</h4>
-
-      <hr>
-      <form action="/backToUserControlPanel" method="GET">
-        <button class="button button-primary">Back to Admin Area</button>
-      </form>
-
-      <form action="/backToHomepageButton" method="GET">
-        <button class="button button-primary">Back to Home Page</button>
-      </form>
-
-
-
-    </fieldset>
+  <div class="row">
+    <div class="one-half column" style="margin-top: 15%">
+      <fieldset>
+        <legend>Member Panel</legend>
+        <h3>Welcome [[${loggedMember.name_first}]]! &#128522</h3>
+        <form action="/listServiceButton" method="GET">
+          <button class="button button-primary">Visit our Services</button>
+        </form>
+        <form action="/editProfile" method="GET">
+          <button class="button button-primary">Edit your Profile</button>
+        </form>
+        <form action="/logout" method="GET">
+          <button class="button button-primary">log out</button>
+        </form>
+      </fieldset>
+    </div>
   </div>
-</div>
 
+</div>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
+

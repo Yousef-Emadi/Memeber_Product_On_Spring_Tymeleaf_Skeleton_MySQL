@@ -6,7 +6,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Your page title here :)</title>
+    <title>Member Management System</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -65,13 +65,13 @@
                     </td>
 
 
-<!--                    <form action="#" th:action="@{/showServiceEditForm}" method="GET">-->
-<!--                        <td><button name="id" th:value="${sv.id}">Edit</button></td>-->
-<!--                    </form>-->
+                    <form action="#" th:action="@{/showEditingForm}" method="GET">
+                        <td><button name="id" th:value="${mmbr.id}">Edit</button></td>
+                    </form>
 
-<!--                    <form action="#" th:action="@{/deleteServiceButton}" method="GET">-->
-<!--                        <td><button name="id" th:value="${sv.id}">Delete</button></td>-->
-<!--                    </form>-->
+                    <form action="#" th:action="@{/deleteMemeberRecord}" method="GET">
+                        <td><button id="delete" name="id" th:value="${mmbr.id}">Delete</button></td>
+                    </form>
                 </tr>
 
             </table>
@@ -91,10 +91,15 @@
             </form>
 
 
-
         </fieldset>
     </div>
 </div>
 
 </body>
+<script>
+    document.getElementById("delete").addEventListener("click", function() {
+(confirm("WARNING: Member will be deleted permanently from the database. Are you sure to continue?"));
+    });
+
+</script>
 </html>
