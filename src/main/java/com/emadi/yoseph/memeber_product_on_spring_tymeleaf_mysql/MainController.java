@@ -125,10 +125,9 @@ public class MainController {
     }
 
     @GetMapping("/creatMemberbyThymeleaf")
-    @ResponseBody
     public String updateMemberHandler(@ModelAttribute("member") Member member) {
         memberRepository.save(member);
-        return "Member modification has been done successfully. &#128522 ";
+        return "redirect: index.html";
     }
 
 
@@ -166,8 +165,7 @@ public class MainController {
     }
 
     @PostMapping("/createService")
-    @ResponseBody
-    public String createServiceHandler(@RequestParam String name, @RequestParam String category, @RequestParam String description, @RequestParam double price) {
+    public String createServiceHandler(@RequestParam String name, @RequestParam String category, @RequestParam String description, @RequestParam double price, ModelMap model) {
 
         Service newService = new Service();
         newService.setName(name.toLowerCase());
@@ -175,7 +173,8 @@ public class MainController {
         newService.setDescription(description.toLowerCase().trim());
         newService.setPrice(price);
         serviceRepository.save(newService);
-        return "A new " + category + " service with name \"" + name + "\" created and added to the list of sevices. &#129303";
+        model.addAttribute("newService", newService);
+        return "service_created_result.html";
     }
 
 
