@@ -294,12 +294,13 @@ public class MainController {
     }
 
 
+    /** <<<<<<<<<<<<<<<<<<<<<<<     Email Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+
     @GetMapping("/sendEmailButton")
     @ResponseBody
     public String sendEmailButton(){
-        emailService.sendMail("rahaa1400@gmail.com", "Hi", "Ho ho ho");
-        return "done";
+        emailService.sendMail("usef.emadi@gmail.com", "Test Email", "Test message from Member application");
+        return "Email has been sent!";
     }
-
 
 }

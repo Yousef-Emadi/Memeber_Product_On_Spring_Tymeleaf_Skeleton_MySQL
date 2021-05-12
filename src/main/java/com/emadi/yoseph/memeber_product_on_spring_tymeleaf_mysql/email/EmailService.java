@@ -1,38 +1,28 @@
 package com.emadi.yoseph.memeber_product_on_spring_tymeleaf_mysql.email;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-@Service("emailService")
-public class EmailService
-{
-    @Autowired
-    private JavaMailSender mailSender;
+@Service
+public class EmailService {
 
-    @Autowired
-    private SimpleMailMessage preConfiguredMessage;
+    private JavaMailSender javaMailSender;
 
-    /**
-     * This method will send compose and send the message
-     * */
-    public void sendMail(String to, String subject, String body)
-    {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
-        mailSender.send(message);
+    public EmailService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
     }
 
-    /**
-     * This method will send a pre-configured message
-     * */
-    public void sendPreConfiguredMail(String message)
-    {
-        SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
+    public void sendMail(String toEmail, String subject, String message) {
+
+        var mailMessage = new SimpleMailMessage();
+
+        mailMessage.setTo(toEmail);
+        mailMessage.setSubject(subject);
         mailMessage.setText(message);
-        mailSender.send(mailMessage);
+
+        mailMessage.setFrom("yousef.emadi@gmail.com");
+
+        javaMailSender.send(mailMessage);
     }
 }
