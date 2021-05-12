@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,8 +37,7 @@ public class Member {
     public double balance;
     public boolean isStaff;
     @OneToMany(fetch= FetchType.EAGER)
-    public List<Service> services;
-
+    public List<Service> services = new ArrayList<>();
 
     //Constructors:
     public Member(String username, String password, String name_first, String name_last, String phone, String email, double balance, boolean staff) {
