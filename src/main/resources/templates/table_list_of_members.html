@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Your page title here :)</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+<div class="row">
+    <div class="one-half column" style="margin: 5%">
+        <fieldset>
+            <legend> Select a service to edit or delete</legend>
+
+
+            <table>
+                <tr>
+                    <th>Member ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Username</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th>Privilege level</th>
+                    <th>Booked Services</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                <tr th:each="mmbr : ${myMembers}">
+                    <td th:text="${mmbr.id}"/>
+                    <td th:text="${mmbr.name_first}"/>
+                    <td th:text="${mmbr.name_last}"/>
+                    <td th:text="${mmbr.username}"/>
+                    <td th:text="${mmbr.phone}"/>
+                    <td th:text="${mmbr.email}"/>
+                    <td th:text="${mmbr.balance}"/>
+                    <td>
+                        <span th:if="${mmbr.isAdmin == true}">Admin</span>
+                        <span th:unless="${mmbr.isAdmin == true}">Member</span>
+                    </td>
+
+
+                    <td th:each="sv : ${mmbr.services}">
+                        <span>[[${sv.name}]]</span>
+                    </td>
+
+
+<!--                    <form action="#" th:action="@{/showServiceEditForm}" method="GET">-->
+<!--                        <td><button name="id" th:value="${sv.id}">Edit</button></td>-->
+<!--                    </form>-->
+
+<!--                    <form action="#" th:action="@{/deleteServiceButton}" method="GET">-->
+<!--                        <td><button name="id" th:value="${sv.id}">Delete</button></td>-->
+<!--                    </form>-->
+                </tr>
+
+            </table>
+
+            <form action="/editServiceButton" method="GET">
+                <button class="button button-primary">Refresh the list</button>
+            </form>
+
+
+            <hr>
+            <form action="/backToHomepageButton"  method="GET">
+                <button class="button button-primary">Back to Home Page</button>
+            </form>
+
+
+
+        </fieldset>
+    </div>
+</div>
+
+</body>
+</html>

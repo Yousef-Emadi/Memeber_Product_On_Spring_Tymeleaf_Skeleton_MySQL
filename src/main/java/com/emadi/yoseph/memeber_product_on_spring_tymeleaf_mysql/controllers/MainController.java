@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 /**
@@ -52,7 +53,7 @@ public class MainController {
     public String login(@RequestParam String username, @RequestParam String password, ModelMap model) {
         for (Member member : memberRepository.findAll()
         ) {
-            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0) && member.isStaff) {
+            if ((member.username.compareToIgnoreCase(username) == 0) && (member.password.compareTo(password) == 0) && member.admin) {
                 loggedMember = member;
                 model.addAttribute("loggedMember", loggedMember);
                 return "admin_landing_page.html";
@@ -62,15 +63,27 @@ public class MainController {
                 model.addAttribute("loggedMember", loggedMember);
                 return "member_landing_page.html";
             }
+            if ((member.username.compareToIgnoreCase(username) == 0)) {
+                loggedMember = member;
+                model.addAttribute("loggedMember", loggedMember);
+                return "wrong_password.html";
+            }
         }
-        return "username_password_incorrect.html";
+        return "wrong_username.html";
     }
 
 
-    @GetMapping("/backToMemberAreaButton")
+    @GetMapping("/backToUserControlPanel")
     public String backToMemberAreaButton(ModelMap model){
         model.addAttribute("loggedMember", loggedMember);
+        if (loggedMember.admin) return "admin_landing_page.html";
         return "member_landing_page.html";
+    }
+
+    @GetMapping("/logout")
+    public String logoutHandler(){
+        loggedMember = null;
+        return "redirect: index.html";
     }
 
 
@@ -95,7 +108,7 @@ public class MainController {
         newMember.setPhone(phone);
         newMember.setEmail(email.toLowerCase());
         newMember.setBalance(100);
-        newMember.setStaff(false);
+        newMember.setAdmin(false);
         memberRepository.save(newMember);
         loggedMember = newMember;
         model.addAttribute("loggedMember", loggedMember);
@@ -111,7 +124,7 @@ public class MainController {
     @GetMapping("/editMemberButton")
     public String editMemberButtonHandler(ModelMap model) {
         model.addAttribute("myMembers", memberRepository.findAll());
-        return "dropdown_list_of_members.html";
+        return "table_list_of_members.html";
     }
 
     @GetMapping("/showEditingForm")
@@ -126,9 +139,11 @@ public class MainController {
     }
 
     @GetMapping("/creatMemberbyThymeleaf")
-    public String updateMemberHandler(@ModelAttribute("member") Member member) {
+    public String updateMemberHandler(@ModelAttribute("member") Member member, ModelMap model) {
         memberRepository.save(member);
-        return "redirect: index.html";
+        model.addAttribute("loggedMember", loggedMember);
+        if (loggedMember.admin) return "admin_landing_page.html";
+        return "member_landing_page.html";
     }
 
 
@@ -143,13 +158,14 @@ public class MainController {
     }
 
     @GetMapping("/deleteMemeberRecord")
-    @ResponseBody
-    public String showEditingForm(int id) {
+    public String showEditingForm(int id, Model model) {
         Optional<Member> result = memberRepository.findById(id);
         if (result.isPresent()) {
             Member selectedMember = result.get();
             memberRepository.delete(selectedMember);
-            return "Member deleted Successfuly";
+            model.addAttribute("loggedMember", loggedMember);
+            if (loggedMember.admin) return "admin_landing_page.html";
+            return "member_landing_page.html";
         }
         return "requested_object_not_found.html";
     }
