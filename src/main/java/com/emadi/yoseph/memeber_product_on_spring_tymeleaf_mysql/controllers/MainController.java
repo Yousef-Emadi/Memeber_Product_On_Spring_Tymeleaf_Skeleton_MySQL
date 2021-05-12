@@ -43,10 +43,9 @@ public class MainController {
     Member loggedMember; //This variable will be used further in booking services module when member start to buy services. initialize in login process
 
 
-
-
-    /** <<<<<<<<<<<<<<<<<<<<<<<<      Login Panel     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
+    /**
+     * <<<<<<<<<<<<<<<<<<<<<<<<      Login Panel     >>>>>>>>>>>>>>>>>>>>>>>>>>
+     */
 
 
     @GetMapping("/login")
@@ -74,14 +73,14 @@ public class MainController {
 
 
     @GetMapping("/backToUserControlPanel")
-    public String backToMemberAreaButton(ModelMap model){
+    public String backToMemberAreaButton(ModelMap model) {
         model.addAttribute("loggedMember", loggedMember);
         if (loggedMember.admin) return "admin_landing_page.html";
         return "member_landing_page.html";
     }
 
     @GetMapping("/logout")
-    public String logoutHandler(){
+    public String logoutHandler() {
         loggedMember = null;
         return "redirect: index.html";
     }
@@ -114,7 +113,6 @@ public class MainController {
         model.addAttribute("loggedMember", loggedMember);
         return "member_landing_page.html";
     }
-
 
 
     /**
@@ -170,7 +168,16 @@ public class MainController {
         return "requested_object_not_found.html";
     }
 
-/** <<<<<<<<<<<<<<<<<<<<<<<     Service Management     >>>>>>>>>>>>>>>>>>>>>>>>>>*/
+    /**
+     * <<<<<<<<<<<<<<<<<<<<<<<     Service Management     >>>>>>>>>>>>>>>>>>>>>>>>>>
+     */
+
+
+    @GetMapping("/listBookedServices")
+    public String listBookedServicesHandler(ModelMap model) {
+        model.addAttribute("myMembers", memberRepository.findAll());
+        return "table_list_of_booked_services.html";
+    }
 
     /**
      * Create a new Service
@@ -245,26 +252,28 @@ public class MainController {
     }
 
 
-
-
-    /** <<<<<<<<<<<<<<<<<<<<<<<     Edit your profile     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+    /**
+     * <<<<<<<<<<<<<<<<<<<<<<<     Edit your profile     >>>>>>>>>>>>>>>>>>>>>>>>>>
+     */
 
 
     @GetMapping("/editProfile")
     public String editProfileButtonHandler(ModelMap model) {
-            model.addAttribute("selectedMember", loggedMember);
-            return "member_editing_form.html";
-        }
+        model.addAttribute("selectedMember", loggedMember);
+        return "member_editing_form.html";
+    }
 
 
-    /** <<<<<<<<<<<<<<<<<<<<<<<     Book Services     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+    /**
+     * <<<<<<<<<<<<<<<<<<<<<<<     Book Services     >>>>>>>>>>>>>>>>>>>>>>>>>>
+     */
 
     @GetMapping("/listServiceButton")
     public String listServiceButton(ModelMap model) {
         model.addAttribute("myServices", serviceRepository.findAll());
 
         if (loggedMember != null) {
-        }else{
+        } else {
             Model model1;
             model.addAttribute("localImageUrl", "images/please.gif");
             return "you_need_to_loggin_before_booking_any_service.html";
@@ -273,7 +282,7 @@ public class MainController {
     }
 
     @GetMapping("/showServiceDetailToBuy")
-    public String showServiceDetailToBuyHandler(int id, ModelMap model){
+    public String showServiceDetailToBuyHandler(int id, ModelMap model) {
         Optional<Service> result = serviceRepository.findById(id);
         if (result.isPresent()) {
             Service selectedService = result.get();
@@ -303,11 +312,13 @@ public class MainController {
     }
 
 
-    /** <<<<<<<<<<<<<<<<<<<<<<<     Email Services (TO BE DEVELOPED)     >>>>>>>>>>>>>>>>>>>>>>>>>> */
+    /**
+     * <<<<<<<<<<<<<<<<<<<<<<<     Email Services (TO BE DEVELOPED)     >>>>>>>>>>>>>>>>>>>>>>>>>>
+     */
 
     @GetMapping("/sendEmailButton")
     @ResponseBody
-    public String sendEmailButton(){
+    public String sendEmailButton() {
         emailService.sendMail("usef.emadi@gmail.com", "Test Email", "Test message from Member application");
         return "Email has been sent!";
     }
