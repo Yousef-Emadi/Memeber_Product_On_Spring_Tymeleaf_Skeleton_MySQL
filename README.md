@@ -38,7 +38,7 @@ To change the privilage, you need to access directly to MySQL database and run t
 - 5. After a booking by user, service will be added to his list and also price of service will be deducted from member balance
 - 6. Email module of the system completely done and design to work with SMTP protocol. But during the development I did not mange to solve the protocol socket problem with TSL port and to be developed in the future for the usage in sending membership activation link , reset password link or any other necessary admin modules.
 - 7. Regular members has ability to create their profile, modify their profile and order a service
-- 8. Admin memberes has the ability to create, modify or delete both member profiles and service profiles as well as sending email.
+- 8. Admin memberes has the ability to have a report of booked services, also create, modify or delete both member profiles and service profiles as well as sending email.
 
 
 
