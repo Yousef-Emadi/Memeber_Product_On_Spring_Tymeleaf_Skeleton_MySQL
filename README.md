@@ -1,6 +1,6 @@
 
 
- ### Project: Member Database with 
+ ### Project: Member Management System
  ### Developed by: Yousef Emadi
  ### Date: APR 2021
  ### Dependencies: Maven, Spring JPA, Spring boot, Hibernate, Thymeleaf, MySQL, Lombok, Skeleton 
@@ -9,6 +9,9 @@ This is a mini full-stack project with Java, Spring, Thymeleaf, Hibernate and My
 If you want to learn more or interested to join this project development, please contact me usef.emadi@gmail.com
 
 ### To setup and run the application take these steps:
+web user interface: http://localhost:8080/
+
+
 #### MySQL setup:
 - 1. Create connection with name root and password root. otherwise reset connectin name and password in application.properties 
 
