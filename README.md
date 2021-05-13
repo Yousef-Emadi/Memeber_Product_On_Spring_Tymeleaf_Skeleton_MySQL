@@ -1,6 +1,6 @@
 
 
- ### Project: Member Database with 
+ ### Project: Member Management System
  ### Developed by: Yousef Emadi
  ### Date: APR 2021
  ### Dependencies: Maven, Spring JPA, Spring boot, Hibernate, Thymeleaf, MySQL, Lombok, Skeleton 
