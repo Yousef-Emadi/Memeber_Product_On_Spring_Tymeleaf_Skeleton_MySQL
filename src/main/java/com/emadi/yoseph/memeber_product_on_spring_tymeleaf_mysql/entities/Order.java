@@ -5,12 +5,13 @@
 //import java.util.ArrayList;
 //import java.util.List;
 //
-///**
-// * Project: Member Database with Hibernate
-// * Developed by: Yousef Emadi
-// * Date: APR 2021
-// * Depends on: Maven, Spring, Hibernate, Thymeleaf, MySQL
-// */
+/**
+ * Project: Member Management System
+ * Developed by: Yousef Emadi
+ * Date: APR 2021
+ * Depends on: Maven, Spring, Hibernate, Thymeleaf, MySQL
+ */
+
 //
 //@Entity
 //@Table(name = "Orders")

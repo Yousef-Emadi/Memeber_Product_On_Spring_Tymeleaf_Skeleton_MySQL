@@ -7,10 +7,10 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
- * Project: Member Database with Hibernate
+ * Project: Member Management System
  * Developed by: Yousef Emadi
  * Date: APR 2021
- * Depends on: Maven, Spring, Hibernate, Thymeleaf, MySQL
+ * Depends on:  Depends on: Maven, Spring JPA, Spring boot, Hibernate, Thymeleaf, MySQL, Lombok, Skeleton
  */
 
 @NoArgsConstructor
