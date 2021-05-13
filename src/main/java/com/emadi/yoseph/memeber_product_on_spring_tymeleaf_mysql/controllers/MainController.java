@@ -164,7 +164,7 @@ public class MainController {
             memberRepository.delete(selectedMember);
             model.addAttribute("loggedMember", loggedMember);
             if (loggedMember.admin) return "landing_page_admin.html";
-            return "landing_page_member.html";
+            return "result_member_deleted.html";
         }
         return "error_requested_object_not_found.html";
     }
@@ -292,10 +292,11 @@ public class MainController {
 
     @GetMapping("/bookService")
     public String bookService(int id, ModelMap model1, ModelMap model2) {
+        Service selectedService = null;
         Optional<Service> result = serviceRepository.findById(id);
         if (result.isPresent()) {
 
-            Service selectedService = result.get();
+            selectedService = result.get();
             if (loggedMember.services.contains(selectedService)) {
                 return "warning_alredy_booked_service.html";
             }
