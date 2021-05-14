@@ -319,7 +319,11 @@ public class MainController {
     @ResponseBody
     public String sendEmailButton() {
 
-        emailService.sendMail("usef.emadi@gmail.com", "Test Email", "Test message from Member application");
+        emailService.sendMail(
+                "usef.emadi@gmail.com",
+                "Test Email",
+                "Test message from Member Management system"
+        );
         return "Email has been sent!";
     }
 

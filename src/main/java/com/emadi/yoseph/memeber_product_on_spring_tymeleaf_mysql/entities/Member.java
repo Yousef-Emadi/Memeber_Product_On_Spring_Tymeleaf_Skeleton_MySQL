@@ -35,7 +35,7 @@ public class Member {
     public String email;
     public double balance;
     public boolean admin;
-    @OneToMany(fetch= FetchType.EAGER)
+    @OneToMany(targetEntity = Service.class, cascade = CascadeType.ALL,fetch= FetchType.EAGER)
     public List<Service> services = new ArrayList<>();
 
     //Constructors:

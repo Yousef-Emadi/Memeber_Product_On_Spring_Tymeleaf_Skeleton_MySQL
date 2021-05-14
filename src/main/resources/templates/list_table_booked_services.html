@@ -34,7 +34,7 @@
 <div class="row">
     <div class="one-half column" style="margin: 5%">
         <fieldset>
-            <legend> Select a service to edit or delete</legend>
+            <legend> Booked services </legend>
 
 
             <table>
@@ -61,20 +61,12 @@
                     <td th:text="${mmbr.username}"/>
                     <td th:text="${mmbr.phone}"/>
                     <td th:text="${mmbr.email}"/>
-                    <td th:text="${mmbr.balance}"/>$
+                    <td th:text="${mmbr.balance}"/>
 
                     <td th:each="sv : ${mmbr.services}">
                         [[${sv.name}]]
                     </td>
 
-
-<!--                    <form action="#" th:action="@{/showServiceEditForm}" method="GET">-->
-<!--                        <td><button name="id" th:value="${sv.id}">Edit</button></td>-->
-<!--                    </form>-->
-
-<!--                    <form action="#" th:action="@{/deleteServiceButton}" method="GET">-->
-<!--                        <td><button name="id" th:value="${sv.id}">Delete</button></td>-->
-<!--                    </form>-->
                 </tr>
 
             </table>
@@ -82,7 +74,7 @@
 
             <hr>
             <form action="/backToUserControlPanel" method="GET">
-                <button class="button button-primary">Back to Admin Area</button>
+                <button class="button button-primary">Back to Admin Panel</button>
             </form>
 
             <form action="/backToHomepageButton"  method="GET">
