@@ -44,4 +44,6 @@ To change the privilage, you need to access directly to MySQL database and run t
 - 8. Admin memberes has the ability to have a report of booked services, also create, modify or delete both member profiles and service profiles as well as sending email.
 - 9. All whitelable errors managed and designed proper pages for general errors and 403 and 404 numbers.
 - 10. All event handlers return the web pages instead of string messages. (no dead-end page)
+- 11. For more code readability, all the properties and fields of Entities has been set as "public". Clearly, in production phase we need to use setters and getters (private modifiers) to encapsulation of data to have more security.
+
 
