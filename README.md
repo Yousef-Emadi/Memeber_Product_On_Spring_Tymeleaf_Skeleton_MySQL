@@ -24,7 +24,7 @@ web user interface: http://localhost:8080/
 `ADD PRIMARY KEY (services_id, member_id),` <br/>
 `DROP INDEX UK_h8ln2x35bcjoq1o6qykb69bwd ;` <br/>
 
-### Note: Application members are has two types of privilage: regualar members and admin members. Due to security, the ability of changing member attribute does not exist and disabled in front-end user interface. 
+### Note: Application members has two types of privilage: regualar members and admin members. Due to security, the ability of changing member attribute does not exist and disabled in front-end user interface. 
 To change the privilage, you need to access directly to MySQL database and run this script for any memeber. (example member with id 1): <br/>
 `UPDATE db_members.members SET admin =b'1' WHERE (id = 1);` <br/>
 
