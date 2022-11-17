@@ -17,16 +17,24 @@ web user interface: http://localhost:8080/
 
 
 #### MySQL setup:
+##### Create DB (method 1/ Local SQL):
 - 1. Create connection with name root and password root. otherwise reset connectin name and password in application.properties 
-
 - 2. Run these SQL commands to create the databse:<br/>
 `DROP DATABASE IF EXISTS db_members;` <br/>
 `CREATE DATABASE db_members;` <br/>
 
-- 3. After the first compiling of the application, turn off Uniqness of service id in joint table by these script:<br/>
+##### Create DB (method 2: default/ Cloud SQL):
+- 1. Go to https://www.freesqldatabase.com/ and create a free account or login via https://www.freesqldatabase.com/account/ 
+- 2. Create a new DB 
+- 3. Take connection string of DB including Hostname, DB name, User, Password and insert them in application.properties 
+
+##### DB Modification to usage
+After the first compiling of the application, turn off Uniqness of service id in joint table by these script:<br/>
+`USE <databse name>; ` <br/>
 `ALTER TABLE db_members.members_services ` <br/>
 `ADD PRIMARY KEY (services_id, member_id),` <br/>
 `DROP INDEX UK_h8ln2x35bcjoq1o6qykb69bwd ;` <br/>
+
 
 ### Note: Application members have two types of privilage: regualar members and admin members. Due to security, the ability of changing member attribute does not exist and disabled in front-end user interface. 
 To change the privilage, you need to access directly to MySQL database and run this script for any memeber. (example member with id 1): <br/>
