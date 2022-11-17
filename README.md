@@ -7,6 +7,10 @@
  
 This is a mini full-stack project with Java, Spring, Thymeleaf, Hibernate and MySQL. This app will gradually merge to a website for helping people with mental health issues.
 If you want to learn more or interested to join this project development, please contact me usef.emadi@gmail.com
+<img width="877" alt="image" src="https://user-images.githubusercontent.com/63328419/202348867-afcb4bbe-62ab-41b0-8066-ab2c0200841a.png">
+
+<img width="779" alt="image" src="https://user-images.githubusercontent.com/63328419/202348963-538bd507-a1c7-42f8-bad0-21904f5025c5.png">
+
 
 ### To setup and run the application take these steps:
 web user interface: http://localhost:8080/
